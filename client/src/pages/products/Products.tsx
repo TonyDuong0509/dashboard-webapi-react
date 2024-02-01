@@ -4,6 +4,8 @@ import DataTable from "../../components/dataTable/DataTable";
 import Add from "../../components/add/Add";
 import { GridColDef } from "@mui/x-data-grid";
 import { Product } from "../../app/models/product";
+import agent from "../../app/api/agent";
+import LoadingComponent from "../../app/layout/LoadingComponent";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 40 },
@@ -78,13 +80,19 @@ const columns: GridColDef[] = [
 
 const Products = () => {
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/products")
-      .then((response) => response.json())
-      .then((data) => setProducts(data));
+    agent.Product.list()
+      .then((products) => {
+        setProducts(products);
+      })
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
   }, []);
+
+  if (loading) return <LoadingComponent message="Loading products..." />;
 
   return (
     <div className="products">

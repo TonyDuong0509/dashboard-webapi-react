@@ -12,7 +12,9 @@ import {
 } from "@mui/material";
 import { Product } from "../../app/models/product";
 import { useParams } from "react-router-dom";
-import axios from "axios";
+import agent from "../../app/api/agent";
+import LoadingComponent from "../../app/layout/LoadingComponent";
+import NotFound from "../../app/errors/NotFound";
 
 const ProductDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -20,16 +22,15 @@ const ProductDetails = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/api/products/${id}`)
-      .then((response) => setProduct(response.data))
+    agent.Product.details(parseInt(id!))
+      .then((response) => setProduct(response))
       .catch((error) => console.log(error))
       .finally(() => setLoading(false));
-  }, [id]);
+  });
 
-  if (loading) return <h3>Loading...</h3>;
+  if (loading) return <LoadingComponent message="Loading product..." />;
 
-  if (!product) return <h3>Product not found...</h3>;
+  if (!product) return <NotFound />;
 
   return (
     <Grid container spacing={6}>
@@ -41,11 +42,11 @@ const ProductDetails = () => {
         />
       </Grid>
       <Grid item xs={6}>
-        <Typography color="red" variant="h3">
+        <Typography color="green" variant="h3">
           {product.brand}
         </Typography>
         <Divider sx={{ mb: 2 }} />
-        <Typography variant="h4" color="green">
+        <Typography variant="h4" color="orange">
           {(product.cod / 1000).toFixed(3)} VNĐ
         </Typography>
         <TableContainer>
