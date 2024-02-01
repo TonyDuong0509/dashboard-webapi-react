@@ -7,8 +7,9 @@ import Footer from "./components/footer/Footer";
 import Menu from "./components/menu/Menu";
 import Login from "./pages/login/Login";
 import "./styles/global.scss";
-import User from "./pages/user/User";
-import Product from "./pages/product/Product";
+import ProductDetails from "./pages/productDetails/ProductDetails";
+import { singleUser } from "./data";
+import UserDetails from "./pages/userDetails/UserDetails";
 
 function App() {
   const Layout = () => {
@@ -34,24 +35,24 @@ function App() {
       element: <Layout />,
       children: [
         {
-          path: "/",
+          path: "",
           element: <Home />,
         },
         {
-          path: "/users",
+          path: "users",
           element: <Users />,
         },
         {
-          path: "/products",
+          path: "products",
           element: <Products />,
         },
         {
-          path: "/users/:id",
-          element: <User />,
+          path: "users/:id",
+          element: <UserDetails {...singleUser} />,
         },
         {
-          path: "/products/:id",
-          element: <Product />,
+          path: "products/:id",
+          element: <ProductDetails />,
         },
       ],
     },

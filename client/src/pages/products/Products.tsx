@@ -1,66 +1,96 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Products.scss";
 import DataTable from "../../components/dataTable/DataTable";
 import Add from "../../components/add/Add";
 import { GridColDef } from "@mui/x-data-grid";
-import { products } from "../../data";
+import { Product } from "../../app/models/product";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 90 },
+  { field: "id", headerName: "ID", width: 40 },
   {
-    field: "img",
+    field: "pictureUrl",
     headerName: "Image",
-    width: 80,
+    width: 70,
     renderCell: (params) => {
-      return <img src={params.row.img || "/noavatar.png"} alt="" />;
+      return (
+        <img
+          src={params.row.pictureUrl || "/noavatar.png"}
+          alt={params.row.name}
+        />
+      );
     },
   },
   {
-    field: "title",
+    field: "name",
     type: "string",
-    headerName: "Title",
-    width: 180,
+    headerName: "Owner",
+    width: 120,
   },
   {
-    field: "color",
+    field: "description",
     type: "string",
-    headerName: "Color",
-    width: 100,
+    headerName: "Description",
+    width: 120,
   },
   {
-    field: "price",
-    type: "string",
-    headerName: "Price",
-    width: 100,
+    field: "cod",
+    type: "number",
+    headerName: "COD (VNĐ)",
+    width: 110,
   },
   {
-    field: "producer",
-    headerName: "Producer",
-    type: "string",
-    width: 100,
+    field: "weight",
+    type: "number",
+    headerName: "Weight",
+    width: 70,
   },
   {
-    field: "createdAt",
-    headerName: "Created At",
-    width: 100,
+    field: "type",
+    headerName: "Type",
+    width: 70,
     type: "string",
   },
   {
-    field: "inStock",
-    headerName: "In Stock",
+    field: "brand",
+    headerName: "Brand",
+    width: 80,
+    type: "string",
+  },
+  {
+    field: "quantity",
+    headerName: "Quantity",
+    width: 80,
+    type: "number",
+  },
+  {
+    field: "status",
+    headerName: "Status",
     width: 80,
     type: "boolean",
+  },
+  {
+    field: "date",
+    headerName: "Time",
+    width: 100,
+    type: "string",
   },
 ];
 
 const Products = () => {
   const [open, setOpen] = useState(false);
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/products")
+      .then((response) => response.json())
+      .then((data) => setProducts(data));
+  }, []);
 
   return (
     <div className="products">
       <div className="info">
-        <h1>Products</h1>
-        <button onClick={() => setOpen(true)}>Add New Products</button>
+        <h1>List Products</h1>
+        <button onClick={() => setOpen(true)}>Add New Product</button>
       </div>
       <DataTable slug="products" columns={columns} rows={products} />
       {open && <Add slug="product" columns={columns} setOpen={setOpen} />}

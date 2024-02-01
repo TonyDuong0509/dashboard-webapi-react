@@ -41,7 +41,7 @@ namespace API.Data
                     Name = "Product 3",
                     Description =
                         "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
-                    COD = 18000,
+                    COD = 1800000,
                     PictureUrl = "/images/products/p3.png",
                     Brand = "VNPOST",
                     Type = "Styrofoam",
@@ -54,7 +54,7 @@ namespace API.Data
                     Name = "Product 4",
                     Description =
                         "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
-                    COD = 30000,
+                    COD = 300000,
                     PictureUrl = "/images/products/p4.png",
                     Brand = "Customer",
                     Type = "Carton",

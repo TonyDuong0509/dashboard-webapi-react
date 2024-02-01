@@ -1,10 +1,15 @@
 import "./navbar.scss";
 
+// const rightLinks = [
+//   { title: "login", path: "/login" },
+//   { title: "register", path: "/register" },
+// ];
+
 const Navbar = () => {
   return (
     <div className="navbar">
       <div className="logo">
-        <img src="logo.svg" alt="" />
+        <img src="/logo.svg" alt="" />
         <span>Francis</span>
       </div>
       <div className="icons">

@@ -1,13 +1,12 @@
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 import "./dataTable.scss";
 import { Link } from "react-router-dom";
-// import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-type Props = {
+interface Props {
   columns: GridColDef[];
   rows: object[];
   slug: string;
-};
+}
 
 const DataTable = (props: Props) => {
   const handleDelete = (id: number) => {
@@ -18,7 +17,7 @@ const DataTable = (props: Props) => {
   const actionColumn: GridColDef = {
     field: "action",
     headerName: "Action",
-    width: 200,
+    width: 80,
     renderCell: (params) => {
       return (
         <div className="action">

@@ -7,7 +7,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import "./single.scss";
+import "./userDetails.scss";
 
 type Props = {
   id: number;
@@ -21,9 +21,13 @@ type Props = {
   activities?: { time: string; text: string }[];
 };
 
-const Single = (props: Props) => {
+const UserDetails = (props: Props) => {
+  // useEffect(() => {
+  //   axios.get();
+  // });
+
   return (
-    <div className="single">
+    <div className="userDetails">
       <div className="view">
         <div className="info">
           <div className="topInfo">
@@ -90,4 +94,4 @@ const Single = (props: Props) => {
   );
 };
 
-export default Single;
+export default UserDetails;
