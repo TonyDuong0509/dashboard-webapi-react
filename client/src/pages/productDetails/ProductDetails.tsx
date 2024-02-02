@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./productDetails.scss";
 import {
   Grid,
@@ -10,26 +10,30 @@ import {
   TableRow,
   TableCell,
 } from "@mui/material";
-import { Product } from "../../app/models/product";
 import { useParams } from "react-router-dom";
-import agent from "../../app/api/agent";
 import LoadingComponent from "../../app/layout/LoadingComponent";
 import NotFound from "../../app/errors/NotFound";
+import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
+import {
+  fetchProductAsync,
+  productSelectors,
+} from "../../app/slice/productSlice";
+import { currencyFormat } from "../../app/util/util";
 
 const ProductDetails = () => {
   const { id } = useParams<{ id: string }>();
-  const [product, setProduct] = useState<Product | null>(null);
-  const [loading, setLoading] = useState(true);
+  const dispatch = useAppDispatch();
+  const { status: productStatus } = useAppSelector((state) => state.product);
+  const product = useAppSelector((state) =>
+    productSelectors.selectById(state, id!)
+  );
 
   useEffect(() => {
-    agent.Product.details(parseInt(id!))
-      .then((response) => setProduct(response))
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
-  });
+    if (!product && id) dispatch(fetchProductAsync(parseInt(id)));
+  }, [id, product, dispatch]);
 
-  if (loading) return <LoadingComponent message="Loading product..." />;
-
+  if (productStatus.includes("pending"))
+    return <LoadingComponent message="Loading product..." />;
   if (!product) return <NotFound />;
 
   return (
@@ -47,7 +51,7 @@ const ProductDetails = () => {
         </Typography>
         <Divider sx={{ mb: 2 }} />
         <Typography variant="h4" color="orange">
-          {(product.cod / 1000).toFixed(3)} VNĐ
+          {currencyFormat(product.cod)} VNĐ
         </Typography>
         <TableContainer>
           <Table>

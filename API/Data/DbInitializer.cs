@@ -19,10 +19,11 @@ namespace API.Data
                     COD = 20000,
                     PictureUrl = "/images/products/p1.png",
                     Brand = "Shopee",
-                    Type = "Carton",
+                    Type = "Sea",
                     Weight = 5.5,
                     Quantity = 1,
-                    Date = DateTime.Now
+                    Date = DateTime.Now,
+                    Status = true,
                 },
                 new Product
                 {
@@ -31,11 +32,12 @@ namespace API.Data
                     COD = 15000,
                     PictureUrl = "/images/products/p2.png",
                     Brand = "GHTK",
-                    Type = "Styrofoam",
+                    Type = "Air",
                     Weight = 10,
                     Quantity = 1,
-                    Date = DateTime.Now
-                },
+                    Date = DateTime.Now,
+                    Status = true,
+        },
                 new Product
                 {
                     Name = "Product 3",
@@ -44,11 +46,12 @@ namespace API.Data
                     COD = 1800000,
                     PictureUrl = "/images/products/p3.png",
                     Brand = "VNPOST",
-                    Type = "Styrofoam",
+                    Type = "Sea",
                     Weight = 7.9,
                     Quantity = 1,
-                    Date = DateTime.Now
-                },
+                    Date = DateTime.Now,
+                    Status = false,
+    },
                 new Product
                 {
                     Name = "Product 4",
@@ -57,10 +60,25 @@ namespace API.Data
                     COD = 300000,
                     PictureUrl = "/images/products/p4.png",
                     Brand = "Customer",
-                    Type = "Carton",
+                    Type = "Sea",
                     Weight = 16,
-                    Quantity = 3,
-                    Date = DateTime.Now
+                    Quantity = 2,
+                    Date = DateTime.Now,
+                    Status = true,
+},
+                new Product
+                {
+                    Name = "Product 5",
+                    Description =
+                        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
+                    COD = 0,
+                    PictureUrl = "/images/products/p4.png",
+                    Brand = "Customer",
+                    Type = "Air",
+                    Weight = 2,
+                    Quantity = 1,
+                    Date = DateTime.Now,
+                    Status = false,
                 },
             };
 

@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import "./Products.scss";
-import DataTable from "../../components/dataTable/DataTable";
 import Add from "../../components/add/Add";
 import { GridColDef } from "@mui/x-data-grid";
-import { Product } from "../../app/models/product";
-import agent from "../../app/api/agent";
 import LoadingComponent from "../../app/layout/LoadingComponent";
+import DataTable from "../../components/dataTable/DataTable";
+import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
+import {
+  fetchProductsAsync,
+  productSelectors,
+} from "../../app/slice/productSlice";
+import { Link } from "react-router-dom";
+import { Button } from "@mui/material";
 
 const columns: GridColDef[] = [
   { field: "id", headerName: "ID", width: 40 },
@@ -15,10 +20,12 @@ const columns: GridColDef[] = [
     width: 70,
     renderCell: (params) => {
       return (
-        <img
-          src={params.row.pictureUrl || "/noavatar.png"}
-          alt={params.row.name}
-        />
+        <Link to={`/products/${params.row.id}`}>
+          <img
+            src={params.row.pictureUrl || "/noavatar.png"}
+            alt={params.row.name}
+          />
+        </Link>
       );
     },
   },
@@ -70,35 +77,28 @@ const columns: GridColDef[] = [
     width: 80,
     type: "boolean",
   },
-  {
-    field: "date",
-    headerName: "Time",
-    width: 100,
-    type: "string",
-  },
 ];
 
 const Products = () => {
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [products, setProducts] = useState<Product[]>([]);
+  const products = useAppSelector(productSelectors.selectAll);
+  const { productsLoaded, status } = useAppSelector((state) => state.product);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
-    agent.Product.list()
-      .then((products) => {
-        setProducts(products);
-      })
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
-  }, []);
+    if (!productsLoaded) dispatch(fetchProductsAsync());
+  }, [productsLoaded, dispatch]);
 
-  if (loading) return <LoadingComponent message="Loading products..." />;
+  if (status.includes("pending"))
+    return <LoadingComponent message="Loading products..." />;
 
   return (
     <div className="products">
       <div className="info">
         <h1>List Products</h1>
-        <button onClick={() => setOpen(true)}>Add New Product</button>
+        <Button variant="contained" onClick={() => setOpen(true)}>
+          Add New Product
+        </Button>
       </div>
       <DataTable slug="products" columns={columns} rows={products} />
       {open && <Add slug="product" columns={columns} setOpen={setOpen} />}

@@ -14,7 +14,7 @@ const LoadingComponent = (props: Props) => {
         height="100vh"
         width="100vw"
       >
-        <CircularProgress size={100} color="secondary" />
+        <CircularProgress size={100} color="success" />
         <Typography
           variant="h4"
           sx={{ justifyContent: "center", position: "fixed", top: "60%" }}

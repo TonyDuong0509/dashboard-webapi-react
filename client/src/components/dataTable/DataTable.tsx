@@ -1,6 +1,9 @@
 import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 import "./dataTable.scss";
 import { Link } from "react-router-dom";
+import { LoadingButton } from "@mui/lab";
+import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
+import { addBasketItemAsync } from "../../app/slice/basketSlice";
 
 interface Props {
   columns: GridColDef[];
@@ -9,22 +12,30 @@ interface Props {
 }
 
 const DataTable = (props: Props) => {
-  const handleDelete = (id: number) => {
-    //delete the item
-    // mutation.mutate(id)
-  };
+  const { status } = useAppSelector((state) => state.basket);
+  const dispatch = useAppDispatch();
 
   const actionColumn: GridColDef = {
     field: "action",
     headerName: "Action",
-    width: 80,
+    width: 180,
     renderCell: (params) => {
       return (
         <div className="action">
           <Link to={`/${props.slug}/${params.row.id}`}>
             <img src="/view.svg" alt="" />
           </Link>
-          <div className="delete" onClick={() => handleDelete(params.row.id)}>
+          <LoadingButton
+            loading={status.includes("pendingAddItem" + params.row.id)}
+            onClick={() =>
+              dispatch(addBasketItemAsync({ productId: params.row.id }))
+            }
+            size="small"
+          >
+            <img src="/basket.svg" alt="" />
+          </LoadingButton>
+
+          <div className="delete">
             <img src="/delete.svg" alt="" />
           </div>
         </div>
