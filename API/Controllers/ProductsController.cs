@@ -22,7 +22,7 @@ namespace API.Controllers
             var query = _context.Products
                 .Sort(productParams.OrderBy)
                 .Search(productParams.SearchTerm)
-                .Filter(productParams.Brands, productParams.Types, productParams.Status)
+                .Filter(productParams.Brands, productParams.Types, productParams.IsGone)
                 .AsQueryable();
 
             var products = await PagedList<Product>.ToPagedList(query, productParams.PageNumber, productParams.PageSize);
@@ -46,9 +46,9 @@ namespace API.Controllers
         {
             var brands = await _context.Products.Select(x => x.Brand).Distinct().ToListAsync();
             var types = await _context.Products.Select(x => x.Type).Distinct().ToListAsync();
-            var status = await _context.Products.Select(x => x.Status).Distinct().ToListAsync();
+            var isGone = await _context.Products.Select(x => x.IsGone).Distinct().ToListAsync();
 
-            return Ok(new { brands, types, status });
+            return Ok(new { brands, types, isGone });
         }
 
         [HttpDelete("{id}")]

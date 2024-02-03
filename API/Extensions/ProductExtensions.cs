@@ -27,23 +27,19 @@ namespace API.Extensions
             return query.Where(x => x.Name.ToLower().Contains(lowerCaseSearchTerm));
         }
 
-        public static IQueryable<Product> Filter(this IQueryable<Product> query, string brands, string types, bool status)
+        public static IQueryable<Product> Filter(this IQueryable<Product> query, string brands, string types, string isGone)
         {
             var brandList = new List<string>();
             var typeList = new List<string>();
-            var statusList = new List<bool>();
+            var isGoneList = new List<string>();
 
             if (!string.IsNullOrEmpty(brands)) brandList.AddRange(brands.ToLower().Split(",").ToList());
             if (!string.IsNullOrEmpty(types)) typeList.AddRange(types.ToLower().Split(",").ToList());
-            if (status == true)
-            {
-                List<bool> statusTempList = new List<bool> { status };
-                statusList.AddRange(statusTempList);
-            }
+            if (!string.IsNullOrEmpty(isGone)) isGoneList.AddRange(isGone.ToLower().Split(",").ToList());
 
             query = query.Where(x => brandList.Count == 0 || brandList.Contains(x.Brand.ToLower()));
             query = query.Where(x => typeList.Count == 0 || typeList.Contains(x.Type.ToLower()));
-            query = query.Where(x => statusList.Count == 0 || statusList.Contains(x.Status));
+            query = query.Where(x => isGoneList.Count == 0 || isGoneList.Contains(x.IsGone.ToLower()));
 
             return query;
         }

@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace API.Entities
 {
     public class Product
@@ -11,7 +13,7 @@ namespace API.Entities
         public string Type { get; set; }
         public string Brand { get; set; }
         public int Quantity { get; set; }
-        public bool Status { get; set; }
+        public string IsGone { get; set; }
         public DateTime Date { get; set; }
     }
 }

@@ -2,9 +2,19 @@
   .dataGrid {
     background: white;
     padding: 20px;
+    border-radius: 0;
 
-    .MuiDataGrid-toolbarContainer {
-      flex-direction: row-reverse;
+    .custom-toolbar {
+      width: 300px;
+      margin-right: auto;
+    }
+
+    .MuiDataGrid-footerContainer {
+      display: none !important;
+    }
+
+    .MuiDataGrid-toolbarExport {
+      display: none !important;
     }
 
     img {

@@ -7,7 +7,16 @@ export interface Product {
   pictureUrl: string;
   type: string;
   brand: string;
-  quantity?: number;
-  status: boolean;
+  quantity: number;
+  isGone: string;
   date: string;
+}
+export interface ProductParams {
+  orderBy: string;
+  searchTerm?: string;
+  types: string[];
+  brands: string[];
+  isGone: string[];
+  pageNumber: number;
+  pageSize: number;
 }

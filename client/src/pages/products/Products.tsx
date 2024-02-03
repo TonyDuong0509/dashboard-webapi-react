@@ -1,26 +1,28 @@
 import { useEffect, useState } from "react";
 import "./Products.scss";
 import Add from "../../components/add/Add";
-import { GridColDef } from "@mui/x-data-grid";
 import LoadingComponent from "../../app/layout/LoadingComponent";
-import DataTable from "../../components/dataTable/DataTable";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import {
+  fetchFilters,
   fetchProductsAsync,
   productSelectors,
+  setPageNumber,
 } from "../../app/slice/productSlice";
 import { Link } from "react-router-dom";
-import { Button } from "@mui/material";
+import { Button, Grid } from "@mui/material";
+import DataTable from "../../components/dataTable/DataTable";
+import { GridColDef } from "@mui/x-data-grid";
+import AppPagination from "../../components/appPagination/AppPagination";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 40 },
   {
     field: "pictureUrl",
     headerName: "Image",
     width: 70,
     renderCell: (params) => {
       return (
-        <Link to={`/products/${params.row.id}`}>
+        <Link to={`/products/${params.row.productId}`}>
           <img
             src={params.row.pictureUrl || "/noavatar.png"}
             alt={params.row.name}
@@ -33,13 +35,13 @@ const columns: GridColDef[] = [
     field: "name",
     type: "string",
     headerName: "Owner",
-    width: 120,
+    width: 150,
   },
   {
     field: "description",
     type: "string",
     headerName: "Description",
-    width: 120,
+    width: 140,
   },
   {
     field: "cod",
@@ -72,35 +74,52 @@ const columns: GridColDef[] = [
     type: "number",
   },
   {
-    field: "status",
-    headerName: "Status",
+    field: "isGone",
+    headerName: "Is Gone",
     width: 80,
-    type: "boolean",
+    type: "string",
   },
 ];
 
 const Products = () => {
   const [open, setOpen] = useState(false);
   const products = useAppSelector(productSelectors.selectAll);
-  const { productsLoaded, status } = useAppSelector((state) => state.product);
+  const { productsLoaded, filtersLoaded, metaData } = useAppSelector(
+    (state) => state.product
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (!productsLoaded) dispatch(fetchProductsAsync());
   }, [productsLoaded, dispatch]);
 
-  if (status.includes("pending"))
-    return <LoadingComponent message="Loading products..." />;
+  useEffect(() => {
+    if (!filtersLoaded) dispatch(fetchFilters());
+  }, [dispatch, filtersLoaded]);
+
+  if (!filtersLoaded) return <LoadingComponent message="Loading products..." />;
 
   return (
     <div className="products">
       <div className="info">
-        <h1>List Products</h1>
-        <Button variant="contained" onClick={() => setOpen(true)}>
+        <h2>List Products</h2>
+        <Button variant="contained" onClick={() => setOpen(true)} size="small">
           Add New Product
         </Button>
       </div>
       <DataTable slug="products" columns={columns} rows={products} />
+
+      <Grid item xs={3} />
+      <Grid item xs={9} sx={{ mb: 2 }}>
+        {metaData && (
+          <AppPagination
+            metaData={metaData}
+            onPageChange={(page: number) =>
+              dispatch(setPageNumber({ pageNumber: page }))
+            }
+          />
+        )}
+      </Grid>
       {open && <Add slug="product" columns={columns} setOpen={setOpen} />}
     </div>
   );

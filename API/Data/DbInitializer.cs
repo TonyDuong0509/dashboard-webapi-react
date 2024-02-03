@@ -15,48 +15,48 @@ namespace API.Data
                 {
                     Name = "Product 1",
                     Description =
-                        "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Maecenas porttitor congue massa. Fusce posuere, magna sed pulvinar ultricies, purus lectus malesuada libero, sit amet commodo magna eros quis urna.",
+                        "Have 2 carton boxes",
                     COD = 20000,
                     PictureUrl = "/images/products/p1.png",
-                    Brand = "Shopee",
+                    Brand = "SHOPEE",
                     Type = "Sea",
                     Weight = 5.5,
                     Quantity = 1,
                     Date = DateTime.Now,
-                    Status = true,
+                    IsGone = "Shipped",
                 },
                 new Product
                 {
                     Name = "Product 2",
-                    Description = "Nunc viverra imperdiet enim. Fusce est. Vivamus a tellus.",
-                    COD = 15000,
+                    Description = "Just has 1 carton box",
+                    COD = 200000,
                     PictureUrl = "/images/products/p2.png",
                     Brand = "GHTK",
                     Type = "Air",
                     Weight = 10,
                     Quantity = 1,
                     Date = DateTime.Now,
-                    Status = true,
-        },
+                    IsGone = "Shipped",
+                },
                 new Product
                 {
                     Name = "Product 3",
                     Description =
-                        "Suspendisse dui purus, scelerisque at, vulputate vitae, pretium mattis, nunc. Mauris eget neque at sem venenatis eleifend. Ut nonummy.",
+                        "Have 2 carton boxes",
                     COD = 1800000,
                     PictureUrl = "/images/products/p3.png",
-                    Brand = "VNPOST",
+                    Brand = "VIETNAM POST",
                     Type = "Sea",
                     Weight = 7.9,
                     Quantity = 1,
                     Date = DateTime.Now,
-                    Status = false,
-    },
+                    IsGone = "At Home",
+                },
                 new Product
                 {
                     Name = "Product 4",
                     Description =
-                        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
+                        "Have 3 carton boxes",
                     COD = 300000,
                     PictureUrl = "/images/products/p4.png",
                     Brand = "Customer",
@@ -64,21 +64,161 @@ namespace API.Data
                     Weight = 16,
                     Quantity = 2,
                     Date = DateTime.Now,
-                    Status = true,
-},
+                    IsGone = "Shipped",
+                },
                 new Product
                 {
                     Name = "Product 5",
                     Description =
-                        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Proin pharetra nonummy pede. Mauris et orci.",
+                        "Just has 1 carton box",
                     COD = 0,
-                    PictureUrl = "/images/products/p4.png",
-                    Brand = "Customer",
+                    PictureUrl = "/images/products/p5.jpg",
+                    Brand = "VIETTEL POST",
                     Type = "Air",
                     Weight = 2,
                     Quantity = 1,
                     Date = DateTime.Now,
-                    Status = false,
+                    IsGone = "At Home",
+                },
+                new Product
+                {
+                    Name = "Product 6",
+                    Description =
+                        "Just has 1 carton box",
+                    COD = 0,
+                    PictureUrl = "/images/products/p5.jpg",
+                    Brand = "VIETTEL POST",
+                    Type = "Air",
+                    Weight = 2,
+                    Quantity = 1,
+                    Date = DateTime.Now,
+                    IsGone = "Shipped",
+                },
+                new Product
+                {
+                    Name = "Product 7",
+                    Description =
+                        "Just has 1 carton box",
+                    COD = 0,
+                    PictureUrl = "/images/products/p5.jpg",
+                    Brand = "VIETTEL POST",
+                    Type = "Air",
+                    Weight = 2,
+                    Quantity = 1,
+                    Date = DateTime.Now,
+                    IsGone = "At Home",
+                },
+                new Product
+                {
+                    Name = "Product 8",
+                    Description =
+                        "Just has 1 carton box",
+                    COD = 0,
+                    PictureUrl = "/images/products/p5.jpg",
+                    Brand = "VIETTEL POST",
+                    Type = "Air",
+                    Weight = 2,
+                    Quantity = 1,
+                    Date = DateTime.Now,
+                    IsGone = "At Home",
+                },
+                new Product
+                {
+                    Name = "Product 9",
+                    Description =
+                        "Just has 1 carton box",
+                    COD = 0,
+                    PictureUrl = "/images/products/p5.jpg",
+                    Brand = "VIETTEL POST",
+                    Type = "Air",
+                    Weight = 2,
+                    Quantity = 1,
+                    Date = DateTime.Now,
+                    IsGone = "Shipped",
+                },
+                new Product
+                {
+                    Name = "Product 10",
+                    Description =
+                        "Just has 1 carton box",
+                    COD = 0,
+                    PictureUrl = "/images/products/p5.jpg",
+                    Brand = "VIETTEL POST",
+                    Type = "Air",
+                    Weight = 2,
+                    Quantity = 1,
+                    Date = DateTime.Now,
+                    IsGone = "At Home",
+                },
+                new Product
+                {
+                    Name = "Product 11",
+                    Description =
+                        "Just has 1 carton box",
+                    COD = 0,
+                    PictureUrl = "/images/products/p5.jpg",
+                    Brand = "VIETTEL POST",
+                    Type = "Air",
+                    Weight = 2,
+                    Quantity = 1,
+                    Date = DateTime.Now,
+                    IsGone = "At Home",
+                },
+                new Product
+                {
+                    Name = "Product 12",
+                    Description =
+                        "Just has 1 carton box",
+                    COD = 0,
+                    PictureUrl = "/images/products/p5.jpg",
+                    Brand = "VIETTEL POST",
+                    Type = "Air",
+                    Weight = 2,
+                    Quantity = 1,
+                    Date = DateTime.Now,
+                    IsGone = "At Home",
+                },
+                new Product
+                {
+                    Name = "Product 13",
+                    Description =
+                        "Just has 1 carton box",
+                    COD = 0,
+                    PictureUrl = "/images/products/p5.jpg",
+                    Brand = "VIETTEL POST",
+                    Type = "Air",
+                    Weight = 2,
+                    Quantity = 1,
+                    Date = DateTime.Now,
+                    IsGone = "Shipped",
+                },
+                new Product
+                {
+                    Name = "Product 14",
+                    Description =
+                        "Just has 1 carton box",
+                    COD = 0,
+                    PictureUrl = "/images/products/p5.jpg",
+                    Brand = "VIETTEL POST",
+                    Type = "Air",
+                    Weight = 2,
+                    Quantity = 1,
+                    Date = DateTime.Now,
+                    IsGone = "At Home",
+                },
+                new Product
+                {
+                    Name = "Product 15",
+                    Description =
+                        "Just has 1 carton box",
+                    COD = 0,
+                    PictureUrl = "/images/products/p5.jpg",
+                    Brand = "VIETTEL POST",
+                    Type = "Air",
+                    Weight = 2,
+                    Quantity = 1,
+                    Date = DateTime.Now,
+                    IsGone = "At Home",
                 },
             };
 

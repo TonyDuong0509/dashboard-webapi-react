@@ -1,9 +1,10 @@
-import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridToolbarContainer } from "@mui/x-data-grid";
 import "./dataTable.scss";
 import { Link } from "react-router-dom";
 import { LoadingButton } from "@mui/lab";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import { addBasketItemAsync } from "../../app/slice/basketSlice";
+import ProductSearch from "../productSearch/ProductSearch";
 
 interface Props {
   columns: GridColDef[];
@@ -14,6 +15,14 @@ interface Props {
 const DataTable = (props: Props) => {
   const { status } = useAppSelector((state) => state.basket);
   const dispatch = useAppDispatch();
+
+  const CustomToolbar = () => {
+    return (
+      <GridToolbarContainer className="custom-toolbar">
+        <ProductSearch />
+      </GridToolbarContainer>
+    );
+  };
 
   const actionColumn: GridColDef = {
     field: "action",
@@ -49,26 +58,14 @@ const DataTable = (props: Props) => {
         className="dataGrid"
         rows={props.rows}
         columns={[...props.columns, actionColumn]}
-        initialState={{
-          pagination: {
-            paginationModel: {
-              pageSize: 10,
-            },
-          },
-        }}
-        slots={{ toolbar: GridToolbar }}
-        slotProps={{
-          toolbar: {
-            showQuickFilter: true,
-            quickFilterProps: { debounceMs: 500 },
-          },
-        }}
-        pageSizeOptions={[5]}
+        slots={{ toolbar: CustomToolbar }}
+        hideFooterPagination
         checkboxSelection
         disableRowSelectionOnClick
         disableColumnFilter
         disableDensitySelector
         disableColumnSelector
+        disableColumnMenu
       />
     </div>
   );
