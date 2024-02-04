@@ -12,8 +12,8 @@ namespace API.Data
             {
                 var user = new User
                 {
-                    UserName = "cuong",
-                    Email = "cuong@gmail.com"
+                    UserName = "vietphil247",
+                    Email = "vietphil247@gmail.com"
                 };
 
                 await userManager.CreateAsync(user, "Pa$$W0rd");
@@ -25,7 +25,7 @@ namespace API.Data
                     Email = "admin@gmail.com"
                 };
 
-                await userManager.CreateAsync(admin, "Pa$$W0rd");
+                await userManager.CreateAsync(admin, "AdminPa$$W0rd");
                 await userManager.AddToRolesAsync(admin, new[] { "Admin", "Member" });
             }
 

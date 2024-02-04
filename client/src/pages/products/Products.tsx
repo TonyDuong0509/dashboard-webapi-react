@@ -19,7 +19,7 @@ const columns: GridColDef[] = [
   {
     field: "pictureUrl",
     headerName: "Image",
-    width: 70,
+    width: 50,
     renderCell: (params) => {
       return (
         <Link to={`/products/${params.row.productId}`}>
