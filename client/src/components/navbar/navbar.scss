@@ -12,6 +12,13 @@
     align-items: center;
     font-weight: bold;
     gap: 10px;
+
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
   }
   .icons {
     display: flex;
