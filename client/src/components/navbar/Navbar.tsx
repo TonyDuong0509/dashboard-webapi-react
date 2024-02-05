@@ -15,10 +15,7 @@ import { signOut } from "../../app/slice/accountSlice";
 import React from "react";
 import { clearBasket } from "../../app/slice/basketSlice";
 
-const rightLinks = [
-  { title: "login", path: "/login" },
-  { title: "register", path: "/register" },
-];
+const rightLinks = [{ title: "login", path: "/login" }];
 
 const navLinkStyles = {
   color: "inherit",

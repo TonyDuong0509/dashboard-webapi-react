@@ -87,6 +87,7 @@ const Products = () => {
   const { productsLoaded, filtersLoaded, metaData } = useAppSelector(
     (state) => state.product
   );
+  const { user } = useAppSelector((state) => state.account);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -103,9 +104,15 @@ const Products = () => {
     <div className="products">
       <div className="info">
         <h2>List Products</h2>
-        <Button variant="contained" onClick={() => setOpen(true)} size="small">
-          Add New Product
-        </Button>
+        {user && (
+          <Button
+            variant="contained"
+            onClick={() => setOpen(true)}
+            size="small"
+          >
+            Add New Product
+          </Button>
+        )}
       </div>
       <DataTable slug="products" columns={columns} rows={products} />
 

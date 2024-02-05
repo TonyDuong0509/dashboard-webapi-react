@@ -94,8 +94,12 @@ const Login = () => {
           </LoadingButton>
           <Grid container>
             <Grid item>
-              <Link to="/register" style={{ textDecoration: "none" }}>
-                {"Don't have an account? Sign Up"}
+              <Link to="/" style={{ textDecoration: "none" }}>
+                <Typography variant="h6" color="gray">
+                  Đăng nhập chỉ được phân quyền bởi admin, bạn không thể đăng
+                  nhập vì tính chất quản trị. Click vào đây để quay trở lại
+                  trang chủ. Xin cảm ơn !
+                </Typography>
               </Link>
             </Grid>
           </Grid>

@@ -3,6 +3,7 @@ import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import Menu from "../../components/menu/Menu";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../../styles/global.scss";
 import { useCallback, useEffect, useState } from "react";
 import LoadingComponent from "./LoadingComponent";

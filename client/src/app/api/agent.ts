@@ -88,6 +88,10 @@ const Account = {
   currentUser: () => request.get("account/currentUser"),
 };
 
+// const Orders = {
+//   list: ()
+// }
+
 const agent = {
   Product,
   Basket,

@@ -1,10 +1,9 @@
 import { LockOutlined } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
-import { Paper, Avatar, Typography, TextField, Grid } from "@mui/material";
+import { Paper, Avatar, Typography, TextField } from "@mui/material";
 import { Container, Box } from "@mui/system";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import agent from "../../app/api/agent";
 
@@ -124,15 +123,8 @@ const Register = () => {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign In
+            Sign Up
           </LoadingButton>
-          <Grid container>
-            <Grid item>
-              <Link to="/login" style={{ textDecoration: "none" }}>
-                {"Already have an account? Sign In"}
-              </Link>
-            </Grid>
-          </Grid>
         </Box>
       </Paper>
     </Container>

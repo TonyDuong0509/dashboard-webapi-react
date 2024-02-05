@@ -27,28 +27,31 @@ builder.Services.AddSwaggerGen(c =>
         Type = SecuritySchemeType.ApiKey,
         Scheme = JwtBearerDefaults.AuthenticationScheme,
         Description = "Put Bearer + your token in the box below",
+
         Reference = new OpenApiReference
         {
             Id = JwtBearerDefaults.AuthenticationScheme,
             Type = ReferenceType.SecurityScheme
         }
     };
+
     c.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
+
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         { jwtSecurityScheme, Array.Empty<string>() }
     });
 });
-builder.Services.AddDbContext<StoreContext>(option =>
+builder.Services.AddDbContext<StoreContext>(opt =>
 {
-    option.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnection"));
+    opt.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnection"));
 });
 builder.Services.AddCors();
-builder.Services.AddIdentityCore<User>(option =>
+builder.Services.AddIdentityCore<User>(opt =>
 {
-    option.User.RequireUniqueEmail = true;
+    opt.User.RequireUniqueEmail = true;
 })
-    .AddRoles<IdentityRole>()
+    .AddRoles<Role>()
     .AddEntityFrameworkStores<StoreContext>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opt =>
@@ -80,12 +83,10 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.UseCors(option =>
+app.UseCors(opt =>
 {
-    option.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000");
+    opt.AllowAnyHeader().AllowAnyMethod().AllowCredentials().WithOrigins("http://localhost:3000");
 });
-
-app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();

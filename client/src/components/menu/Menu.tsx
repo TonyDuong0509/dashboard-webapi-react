@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import "./Menu.scss";
-import { menu } from "../../data";
 import { Divider, Grid, Paper } from "@mui/material";
 import { useEffect } from "react";
 import {
@@ -11,6 +10,45 @@ import {
 import { useAppSelector, useAppDispatch } from "../../app/store/configureStore";
 import CheckboxButtons from "../checkboxButtons/CheckboxButtons";
 
+const menu = [
+  {
+    id: 1,
+    title: "main",
+    listItems: [
+      {
+        id: 1,
+        title: "Homepage",
+        url: "/",
+        icon: "/home.svg",
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: "lists",
+    listItems: [
+      {
+        id: 1,
+        title: "Users",
+        url: "/users",
+        icon: "/user.svg",
+      },
+      {
+        id: 2,
+        title: "Products",
+        url: "/products",
+        icon: "/product.svg",
+      },
+      {
+        id: 3,
+        title: "Orders",
+        url: "/orders",
+        icon: "/order.svg",
+      },
+    ],
+  },
+];
+
 const Menu = () => {
   const {
     productsLoaded,
@@ -20,6 +58,8 @@ const Menu = () => {
     isGone,
     productParams,
   } = useAppSelector((state) => state.product);
+
+  const { user } = useAppSelector((state) => state.account);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -35,12 +75,18 @@ const Menu = () => {
       {menu.map((item) => (
         <div className="item" key={item.id}>
           <span className="title">{item.title}</span>
-          {item.listItems.map((listItem) => (
-            <Link to={listItem.url} className="listItem" key={listItem.id}>
-              <img src={listItem.icon} alt="" />
-              <span className="listItemTitle">{listItem.title}</span>
-            </Link>
-          ))}
+          {item.listItems.map(
+            (listItem) =>
+              (user
+                ? true
+                : listItem.title === "Homepage" ||
+                  listItem.title === "Products") && (
+                <Link to={listItem.url} className="listItem" key={listItem.id}>
+                  <img src={listItem.icon} alt="" />
+                  <span className="listItemTitle">{listItem.title}</span>
+                </Link>
+              )
+          )}
         </div>
       ))}
 
