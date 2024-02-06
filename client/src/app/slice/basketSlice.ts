@@ -6,11 +6,13 @@ import { getCookie } from "../util/util";
 interface BasketState {
   basket: Basket | null;
   status: string;
+  isQuantityFull: boolean;
 }
 
 const initialState: BasketState = {
   basket: null,
   status: "idle",
+  isQuantityFull: false,
 };
 
 export const fetchBasketAsync = createAsyncThunk<Basket>(
@@ -31,17 +33,14 @@ export const fetchBasketAsync = createAsyncThunk<Basket>(
 
 export const addBasketItemAsync = createAsyncThunk<
   Basket,
-  { productId: number; quantity?: number }
->(
-  "basket/addBasketItemAsync",
-  async ({ productId, quantity = 1 }, thunkAPI) => {
-    try {
-      return await agent.Basket.addItem(productId, quantity);
-    } catch (error: any) {
-      return thunkAPI.rejectWithValue({ error: error.data });
-    }
+  { productId: number; quantity: number }
+>("basket/addBasketItemAsync", async ({ productId, quantity }, thunkAPI) => {
+  try {
+    return await agent.Basket.addItem(productId, quantity);
+  } catch (error: any) {
+    return thunkAPI.rejectWithValue({ error: error.data });
   }
-);
+});
 
 export const removeBasketItemAsync = createAsyncThunk<
   void,
@@ -63,6 +62,9 @@ export const basketSlice = createSlice({
     },
     clearBasket: (state) => {
       state.basket = null;
+    },
+    setQuantityFull(state, action) {
+      state.isQuantityFull = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -105,4 +107,4 @@ export const basketSlice = createSlice({
   },
 });
 
-export const { setBasket, clearBasket } = basketSlice.actions;
+export const { setBasket, clearBasket, setQuantityFull } = basketSlice.actions;

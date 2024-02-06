@@ -9,7 +9,7 @@ import {
   productSelectors,
   setPageNumber,
   updateProductIsWeighedAsync,
-  setIsWeighed, // Added import
+  setIsWeighed,
 } from "../../app/slice/productSlice";
 import { Link } from "react-router-dom";
 import { Button, Grid } from "@mui/material";
@@ -79,7 +79,6 @@ const columns: GridColDef[] = [
 
 const Products = () => {
   const [open, setOpen] = useState(false);
-
   const products = useAppSelector(productSelectors.selectAll);
   const { productsLoaded, filtersLoaded, metaData, isWeighedMap } =
     useAppSelector((state) => state.product);

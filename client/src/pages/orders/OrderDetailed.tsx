@@ -1,7 +1,6 @@
-import { Box, Typography, Button, Grid } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import { BasketItem } from "../../app/models/basket";
 import { Order } from "../../app/models/order";
-import BasketSummary from "../basket/BasketSummary";
 import BasketTable from "../basket/BasketTable";
 
 interface Props {
@@ -13,7 +12,12 @@ const OrderDetailed = ({ order, setSelectedOrder }: Props) => {
   return (
     <>
       <Box display="flex" justifyContent="space-between">
-        <Typography sx={{ p: 2 }} gutterBottom variant="h4">
+        <Typography
+          sx={{ p: 2, fontWeight: "bold" }}
+          gutterBottom
+          variant="h4"
+          color="green"
+        >
           Order# {order.id}
         </Typography>
         <Button
@@ -26,12 +30,7 @@ const OrderDetailed = ({ order, setSelectedOrder }: Props) => {
         </Button>
       </Box>
       <BasketTable items={order.orderItems as BasketItem[]} isBasket={false} />
-      <Grid container>
-        <Grid item xs={6} />
-        <Grid item xs={6}>
-          <BasketSummary />
-        </Grid>
-      </Grid>
+      <div style={{ marginTop: 100 }}></div>
     </>
   );
 };

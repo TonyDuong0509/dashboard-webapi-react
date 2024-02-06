@@ -13,6 +13,8 @@ import {
 import { BasketItem } from "../../app/models/basket";
 import { removeBasketItemAsync } from "../../app/slice/basketSlice";
 import { useAppSelector, useAppDispatch } from "../../app/store/configureStore";
+import { useEffect, useState } from "react";
+import Modal from "react-modal";
 
 interface Props {
   items: BasketItem[];
@@ -21,7 +23,20 @@ interface Props {
 
 const BasketTable = ({ items, isBasket = true }: Props) => {
   const { status } = useAppSelector((state) => state.basket);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    Modal.setAppElement("#root");
+  }, []);
 
   return (
     <TableContainer component={Paper}>
@@ -51,9 +66,68 @@ const BasketTable = ({ items, isBasket = true }: Props) => {
                   <img
                     src={item.pictureUrl}
                     alt={item.name}
-                    style={{ height: 40, marginRight: 20 }}
+                    style={{
+                      height: 50,
+                      width: 50,
+                      marginRight: 20,
+                      cursor: "pointer",
+                    }}
+                    onClick={openModal}
                   />
-                  <span>{item.name}</span>
+                  <span
+                    style={{
+                      fontSize: 18,
+                      fontWeight: "bold",
+                      color: "blue",
+                    }}
+                  >
+                    {item.name}
+                  </span>
+                  <Modal
+                    isOpen={isModalOpen}
+                    onRequestClose={closeModal}
+                    contentLabel="Product Image Modal"
+                    appElement={document.getElementById("root")}
+                    style={{
+                      overlay: {
+                        backgroundColor: "rgba(0, 0, 0, 0.5)",
+                      },
+                      content: {
+                        top: "50%",
+                        left: "50%",
+                        right: "auto",
+                        bottom: "auto",
+                        marginRight: "-50%",
+                        transform: "translate(-50%, -50%)",
+                        padding: "20px",
+                        border: "none",
+                        borderRadius: "8px",
+                        width: "80%",
+                        maxWidth: "600px",
+                      },
+                    }}
+                  >
+                    <button
+                      onClick={closeModal}
+                      style={{
+                        position: "absolute",
+                        top: "10px",
+                        right: "10px",
+                        background: "none",
+                        border: "none",
+                        fontSize: "20px",
+                        cursor: "pointer",
+                        color: "red",
+                      }}
+                    >
+                      X
+                    </button>
+                    <img
+                      src={item.pictureUrl}
+                      alt={item.name}
+                      style={{ width: "100%", borderRadius: "8px" }}
+                    />
+                  </Modal>
                 </Box>
               </TableCell>
               <TableCell align="center">

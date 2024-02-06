@@ -64,6 +64,20 @@ namespace API.Controllers
             return BadRequest(new ProblemDetails { Title = "Problem updating weight of product..." });
         }
 
+        [HttpPatch("{id}/updateQuantity")]
+        public async Task<ActionResult> UpdateQuantity(int id, int quantity = 0)
+        {
+            var product = await _context.Products.FindAsync(id);
+            if (product == null) return NotFound();
+
+            product.Quantity = quantity;
+
+            var result = await _context.SaveChangesAsync() > 0;
+            if (result) return Ok("Update successfully");
+
+            return BadRequest(new ProblemDetails { Title = "Problem updating weight of product..." });
+        }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteProduct(int id)
         {

@@ -93,6 +93,14 @@ export const updateProductIsWeighedAsync = createAsyncThunk<
   }
 );
 
+export const updateProductQuantityAsync = createAsyncThunk(
+  "products/updateProductQuantityAsync",
+  async (productId: number) => {
+    await agent.Product.updateQuantity(productId, 0);
+    return productId;
+  }
+);
+
 function initParams(): ProductParams {
   return {
     pageNumber: 1,
@@ -185,9 +193,20 @@ export const productSlice = createSlice({
       }
       state.status = "idle";
     });
-
-    builder.addCase(updateProductIsWeighedAsync.rejected, (state, action) => {
-      console.log(action.payload);
+    builder.addCase(updateProductIsWeighedAsync.rejected, (state) => {
+      state.status = "idle";
+    });
+    builder.addCase(updateProductQuantityAsync.fulfilled, (state, action) => {
+      const productId = action.payload;
+      const updatedProduct = state.entities[productId];
+      if (updatedProduct) {
+        productsAdapter.updateOne(state, {
+          id: productId,
+          changes: { quantity: 0 },
+        });
+      }
+    });
+    builder.addCase(updateProductQuantityAsync.rejected, (state) => {
       state.status = "idle";
     });
   },

@@ -15,7 +15,7 @@ interface Props {
 }
 
 const DataTable = (props: Props) => {
-  const { status } = useAppSelector((state) => state.basket);
+  const { status, basket } = useAppSelector((state) => state.basket);
   const { user } = useAppSelector((state) => state.account);
   const dispatch = useAppDispatch();
 
@@ -32,6 +32,29 @@ const DataTable = (props: Props) => {
     headerName: "Action",
     width: 180,
     renderCell: (params) => {
+      const isInBasket = basket?.items.some(
+        (item) => item.productId === params.row.id
+      );
+      const isMaxQuantityReached =
+        isInBasket &&
+        basket.items.find((item) => item.productId === params.row.id)
+          ?.quantity >= params.row.quantity;
+
+      if (!params.row.quantity || isMaxQuantityReached) {
+        return (
+          <div className="action">
+            <Link to={`/${props.slug}/${params.row.id}`}>
+              <img src="/view.svg" alt="" />
+            </Link>
+            {user && (
+              <div className="delete">
+                <img src="/delete.svg" alt="" />
+              </div>
+            )}
+          </div>
+        );
+      }
+
       return (
         <div className="action">
           <Link to={`/${props.slug}/${params.row.id}`}>
@@ -42,7 +65,12 @@ const DataTable = (props: Props) => {
               <LoadingButton
                 loading={status.includes("pendingAddItem" + params.row.id)}
                 onClick={() =>
-                  dispatch(addBasketItemAsync({ productId: params.row.id }))
+                  dispatch(
+                    addBasketItemAsync({
+                      productId: params.row.id,
+                      quantity: params.row.quantity,
+                    })
+                  )
                 }
                 size="small"
               >

@@ -43,7 +43,7 @@ namespace API.Data
                     Brand = "Khách hàng",
                     Type = "SEA",
                     Weight = 0,
-                    Quantity = 3,
+                    Quantity = 1,
                      isWeighed = false,
                     Date = DateTime.Now,
 

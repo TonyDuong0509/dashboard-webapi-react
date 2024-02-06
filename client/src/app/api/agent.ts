@@ -75,6 +75,8 @@ const Product = {
   fetchFilters: () => request.get("products/filters"),
   updateWeighed: (id: number, isWeighed: boolean) =>
     request.patch(`products/${id}/updatedIsWeighed`, { isWeighed }),
+  updateQuantity: (id: number, quantity: number) =>
+    request.patch(`products/${id}/updateQuantity`, { quantity }),
   remove: (id: number) => request.delete(`products/${id}`),
 };
 

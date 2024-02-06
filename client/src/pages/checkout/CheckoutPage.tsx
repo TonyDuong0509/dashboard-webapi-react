@@ -17,6 +17,10 @@ import { validationSchema } from "./checkoutValidation";
 import AddressForm from "./AddressForm";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { clearBasket } from "../../app/slice/basketSlice";
+import {
+  fetchProductsAsync,
+  updateProductQuantityAsync,
+} from "../../app/slice/productSlice";
 
 const steps = ["Thông tin chuyến đi", "Kiểm tra lại hàng"];
 
@@ -52,9 +56,12 @@ export default function CheckoutPage() {
         const order = await agent.Orders.create({
           shippingAddress,
         });
-        setOrderNumber(order);
-        setActiveStep(activeStep + 1);
+        const orderID = order.id;
+        dispatch(updateProductQuantityAsync(orderID));
         dispatch(clearBasket());
+        dispatch(fetchProductsAsync());
+        setOrderNumber(orderID);
+        setActiveStep(activeStep + 1);
         setLoading(false);
       } catch (error) {
         console.log(error);
@@ -123,7 +130,7 @@ export default function CheckoutPage() {
                   variant="contained"
                   sx={{ mt: 3, ml: 1 }}
                 >
-                  {activeStep === steps.length - 1 ? "Place order" : "Next"}
+                  {activeStep === steps.length - 1 ? "Xác nhận" : "Tiếp tục"}
                 </LoadingButton>
               </Box>
             </form>
