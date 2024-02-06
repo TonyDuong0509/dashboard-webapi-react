@@ -8,15 +8,14 @@ export interface Product {
   type: string;
   brand: string;
   quantity: number;
-  isGone: string;
   date: string;
+  isWeighed: boolean;
 }
 export interface ProductParams {
   orderBy: string;
   searchTerm?: string;
   types: string[];
   brands: string[];
-  isGone: string[];
   pageNumber: number;
   pageSize: number;
 }

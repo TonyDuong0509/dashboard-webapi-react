@@ -10,10 +10,13 @@ interface Props {
   columns: GridColDef[];
   rows: object[];
   slug: string;
+  handleIsWeighedClick: (row: any) => void;
+  isWeighedMap: Record<number, boolean>;
 }
 
 const DataTable = (props: Props) => {
   const { status } = useAppSelector((state) => state.basket);
+  const { user } = useAppSelector((state) => state.account);
   const dispatch = useAppDispatch();
 
   const CustomToolbar = () => {
@@ -34,30 +37,58 @@ const DataTable = (props: Props) => {
           <Link to={`/${props.slug}/${params.row.id}`}>
             <img src="/view.svg" alt="" />
           </Link>
-          <LoadingButton
-            loading={status.includes("pendingAddItem" + params.row.id)}
-            onClick={() =>
-              dispatch(addBasketItemAsync({ productId: params.row.id }))
-            }
-            size="small"
-          >
-            <img src="/basket.svg" alt="" />
-          </LoadingButton>
+          {user && (
+            <>
+              <LoadingButton
+                loading={status.includes("pendingAddItem" + params.row.id)}
+                onClick={() =>
+                  dispatch(addBasketItemAsync({ productId: params.row.id }))
+                }
+                size="small"
+              >
+                <img src="/basket.svg" alt="" />
+              </LoadingButton>
 
-          <div className="delete">
-            <img src="/delete.svg" alt="" />
-          </div>
+              <div className="delete">
+                <img src="/delete.svg" alt="" />
+              </div>
+            </>
+          )}
         </div>
       );
     },
   };
 
+  const isWeighedColumn: GridColDef = {
+    field: "isWeighed",
+    headerName: "Is Weighed",
+    width: 100,
+    type: "boolean",
+    renderCell: (params) => (
+      <>
+        {user && (
+          <div onClick={() => props.handleIsWeighedClick(params.row)}>
+            {params.value ? (
+              <span style={{ color: "blue" }}>&#x2717;</span>
+            ) : (
+              <span style={{ color: "violet" }}>&#x2713;</span>
+            )}
+          </div>
+        )}
+      </>
+    ),
+  };
+
   return (
     <div className="dataTable">
       <DataGrid
+        getRowId={(row) => row.id}
         className="dataGrid"
-        rows={props.rows}
-        columns={[...props.columns, actionColumn]}
+        rows={props.rows.map((row: any) => ({
+          ...row,
+          isWeighed: props.isWeighedMap[row.id],
+        }))}
+        columns={[...props.columns, isWeighedColumn, actionColumn]}
         slots={{ toolbar: CustomToolbar }}
         hideFooterPagination
         checkboxSelection

@@ -14,9 +14,9 @@ interface ProductState {
   status: string;
   brands: string[];
   types: string[];
-  isGone: string[];
   productParams: ProductParams;
   metaData: MetaData | null;
+  isWeighedMap: Record<number, boolean>;
 }
 
 const productsAdapter = createEntityAdapter<Product>();
@@ -32,8 +32,6 @@ function getAxiosParams(productParams: ProductParams) {
     params.append("types", productParams.types.toString());
   if (productParams.brands.length > 0)
     params.append("brands", productParams.brands.toString());
-  if (productParams.isGone.length > 0)
-    params.append("isGone", productParams.isGone.toString());
   return params;
 }
 
@@ -75,6 +73,26 @@ export const fetchFilters = createAsyncThunk(
   }
 );
 
+export const updateProductIsWeighedAsync = createAsyncThunk<
+  Product,
+  { id: number; isWeighed: boolean },
+  { state: RootState }
+>(
+  "product/updateProductIsWeighedAsync",
+  async ({ id, isWeighed }, thunkAPI) => {
+    try {
+      const updatedProduct = await agent.Product.updateWeighed(id, isWeighed);
+      if (!isWeighed) {
+        return { ...updatedProduct, id };
+      } else {
+        return thunkAPI.getState().product.entities[id];
+      }
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue({ error: error.data });
+    }
+  }
+);
+
 function initParams(): ProductParams {
   return {
     pageNumber: 1,
@@ -82,7 +100,6 @@ function initParams(): ProductParams {
     orderBy: "name",
     brands: [],
     types: [],
-    isGone: [],
   };
 }
 
@@ -94,9 +111,9 @@ export const productSlice = createSlice({
     status: "idle",
     brands: [],
     types: [],
-    isGone: [],
     productParams: initParams(),
     metaData: null,
+    isWeighedMap: {},
   }),
   reducers: {
     setProductParams: (state, action) => {
@@ -116,6 +133,9 @@ export const productSlice = createSlice({
     },
     resetProductParams: (state) => {
       state.productParams = initParams();
+    },
+    setIsWeighed: (state, action) => {
+      state.isWeighedMap = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -147,11 +167,27 @@ export const productSlice = createSlice({
     builder.addCase(fetchFilters.fulfilled, (state, action) => {
       state.brands = action.payload.brands;
       state.types = action.payload.types;
-      state.isGone = action.payload.isGone;
       state.status = "idle";
       state.filtersLoaded = true;
     });
     builder.addCase(fetchFilters.rejected, (state) => {
+      state.status = "idle";
+    });
+    builder.addCase(updateProductIsWeighedAsync.pending, (state) => {
+      state.status = "pendingUpdateProductIsWeighed";
+    });
+
+    builder.addCase(updateProductIsWeighedAsync.fulfilled, (state, action) => {
+      const { id, isWeighed } = action.payload;
+      if (!isWeighed) {
+        productsAdapter.updateOne(state, { id, changes: { isWeighed } });
+        state.isWeighedMap = { ...state.isWeighedMap, [id]: isWeighed };
+      }
+      state.status = "idle";
+    });
+
+    builder.addCase(updateProductIsWeighedAsync.rejected, (state, action) => {
+      console.log(action.payload);
       state.status = "idle";
     });
   },
@@ -162,6 +198,7 @@ export const {
   resetProductParams,
   setMetaData,
   setPageNumber,
+  setIsWeighed,
 } = productSlice.actions;
 
 export const productSelectors = productsAdapter.getSelectors(

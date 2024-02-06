@@ -9,10 +9,11 @@ import App from "../layout/App";
 import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
 import BasketPage from "../../pages/basket/BasketPage";
-import CheckoutPage from "../../pages/checkout/CheckoutPage";
 import RequireAuth from "./RequireAuth";
 import Register from "../../pages/account/Register";
 import Login from "../../pages/account/Login";
+import CheckoutPage from "../../pages/checkout/CheckoutPage";
+import Orders from "../../pages/orders/Orders";
 
 export const router = createBrowserRouter([
   {
@@ -21,7 +22,10 @@ export const router = createBrowserRouter([
     children: [
       {
         element: <RequireAuth />,
-        children: [{ path: "/checkout", element: <CheckoutPage /> }],
+        children: [
+          { path: "/checkout", element: <CheckoutPage /> },
+          { path: "/orders", element: <Orders /> },
+        ],
       },
       {
         path: "",

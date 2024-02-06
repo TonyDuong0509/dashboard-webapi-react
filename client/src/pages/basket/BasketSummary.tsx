@@ -11,8 +11,9 @@ import { useAppSelector } from "../../app/store/configureStore";
 
 export default function BasketSummary() {
   const { basket } = useAppSelector((state) => state.basket);
-  const subCOD = basket?.items.reduce((sum, item) => sum + item.cod, 0) ?? 0;
-  // const pickUpFee = subCOD > 10000 ? 0 : 500;
+  const totalCOD = basket?.items.reduce((sum, item) => sum + item.cod, 0) ?? 0;
+  const totalProducts =
+    basket?.items.reduce((sum, item) => sum + item.quantity, 0) ?? 0;
 
   return (
     <>
@@ -21,18 +22,11 @@ export default function BasketSummary() {
           <TableBody>
             <TableRow>
               <TableCell colSpan={2}>Total COD</TableCell>
-              <TableCell align="right">{currencyFormat(subCOD)}</TableCell>
+              <TableCell align="right">{currencyFormat(totalCOD)}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={2}>Pick Up fee*</TableCell>
-              <TableCell align="right"></TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>
-                <span style={{ fontStyle: "italic" }}>
-                  *Orders over 5km and 10kg for free pick up
-                </span>
-              </TableCell>
+              <TableCell colSpan={2}>Total Products</TableCell>
+              <TableCell align="right">{totalProducts}</TableCell>
             </TableRow>
           </TableBody>
         </Table>

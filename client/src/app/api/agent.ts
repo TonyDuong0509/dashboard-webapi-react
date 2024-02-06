@@ -63,6 +63,8 @@ const request = {
     axios.get(url, { params }).then(responseBody),
   post: (url: string, body: object) => axios.post(url, body).then(responseBody),
   put: (url: string, body: object) => axios.put(url, body).then(responseBody),
+  patch: (url: string, body: object) =>
+    axios.patch(url, body).then(responseBody),
   delete: (url: string) => axios.delete(url).then(responseBody),
 };
 
@@ -71,6 +73,8 @@ const Product = {
   list: (params: URLSearchParams) => request.get("products", params),
   details: (id: number) => request.get(`products/${id}`),
   fetchFilters: () => request.get("products/filters"),
+  updateWeighed: (id: number, isWeighed: boolean) =>
+    request.patch(`products/${id}/updatedIsWeighed`, { isWeighed }),
   remove: (id: number) => request.delete(`products/${id}`),
 };
 
@@ -88,14 +92,18 @@ const Account = {
   currentUser: () => request.get("account/currentUser"),
 };
 
-// const Orders = {
-//   list: ()
-// }
+const Orders = {
+  list: () => request.get("orders"),
+  fetch: (id: number) => request.get(`orders/${id}`),
+  create: (values: any) => request.post("orders", values),
+  remove: (id: number) => request.delete(`orders/${id}`),
+};
 
 const agent = {
   Product,
   Basket,
   Account,
+  Orders,
 };
 
 export default agent;

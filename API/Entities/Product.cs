@@ -1,4 +1,3 @@
-using System.ComponentModel.DataAnnotations;
 
 namespace API.Entities
 {
@@ -13,7 +12,7 @@ namespace API.Entities
         public string Type { get; set; }
         public string Brand { get; set; }
         public int Quantity { get; set; }
-        public string IsGone { get; set; }
+        public bool isWeighed { get; set; }
         public DateTime Date { get; set; }
     }
 }

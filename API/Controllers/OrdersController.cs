@@ -64,7 +64,7 @@ namespace API.Controllers
                 {
                     ItemOrdered = itemOrdered,
                     COD = productItem.COD,
-                    Quantity = productItem.Quantity
+                    Quantity = productItem.Quantity,
                 };
                 items.Add(orderItem);
                 productItem.Quantity -= item.Quantity;
@@ -102,6 +102,20 @@ namespace API.Controllers
             if (result) return CreatedAtRoute("GetOrder", new { id = order.Id }, order.Id);
 
             return BadRequest("Problem creating order");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteOrder(int id)
+        {
+            var order = await _context.Orders.FindAsync(id);
+            if (order == null) return NotFound();
+
+            _context.Orders.Remove(order);
+
+            var result = await _context.SaveChangesAsync() > 0;
+            if (result) return NoContent();
+
+            return BadRequest(new ProblemDetails { Title = "Problem deleting order..." });
         }
     }
 }

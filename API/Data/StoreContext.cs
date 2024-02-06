@@ -30,6 +30,11 @@ namespace API.Data
                     new Role { Id = 1, Name = "Member", NormalizedName = "MEMBER" },
                     new Role { Id = 2, Name = "Admin", NormalizedName = "ADMIN" }
                 );
+
+            builder.Entity<Order>()
+                .HasMany(x => x.OrderItems)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

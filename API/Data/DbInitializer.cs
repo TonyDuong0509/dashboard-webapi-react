@@ -44,8 +44,9 @@ namespace API.Data
                     Type = "Sea",
                     Weight = 5.5,
                     Quantity = 1,
+                     isWeighed = true,
                     Date = DateTime.Now,
-                    IsGone = "Shipped",
+
                 },
                 new Product
                 {
@@ -57,8 +58,9 @@ namespace API.Data
                     Type = "Air",
                     Weight = 10,
                     Quantity = 1,
+                     isWeighed = false,
                     Date = DateTime.Now,
-                    IsGone = "Shipped",
+
                 },
                 new Product
                 {
@@ -71,8 +73,9 @@ namespace API.Data
                     Type = "Sea",
                     Weight = 7.9,
                     Quantity = 1,
+                     isWeighed = true,
                     Date = DateTime.Now,
-                    IsGone = "At Home",
+
                 },
                 new Product
                 {
@@ -85,8 +88,9 @@ namespace API.Data
                     Type = "Sea",
                     Weight = 16,
                     Quantity = 2,
+                     isWeighed = false,
                     Date = DateTime.Now,
-                    IsGone = "Shipped",
+
                 },
                 new Product
                 {
@@ -99,8 +103,9 @@ namespace API.Data
                     Type = "Air",
                     Weight = 2,
                     Quantity = 1,
+                     isWeighed = false,
                     Date = DateTime.Now,
-                    IsGone = "At Home",
+
                 },
                 new Product
                 {
@@ -113,8 +118,9 @@ namespace API.Data
                     Type = "Air",
                     Weight = 2,
                     Quantity = 1,
+                     isWeighed = true,
                     Date = DateTime.Now,
-                    IsGone = "Shipped",
+
                 },
                 new Product
                 {
@@ -127,8 +133,9 @@ namespace API.Data
                     Type = "Air",
                     Weight = 2,
                     Quantity = 1,
+                     isWeighed = true,
                     Date = DateTime.Now,
-                    IsGone = "At Home",
+
                 },
                 new Product
                 {
@@ -141,8 +148,9 @@ namespace API.Data
                     Type = "Air",
                     Weight = 2,
                     Quantity = 1,
+                     isWeighed = false,
                     Date = DateTime.Now,
-                    IsGone = "At Home",
+
                 },
                 new Product
                 {
@@ -155,8 +163,9 @@ namespace API.Data
                     Type = "Air",
                     Weight = 2,
                     Quantity = 1,
+                     isWeighed = true,
                     Date = DateTime.Now,
-                    IsGone = "Shipped",
+
                 },
                 new Product
                 {
@@ -169,8 +178,9 @@ namespace API.Data
                     Type = "Air",
                     Weight = 2,
                     Quantity = 1,
+                     isWeighed = true,
                     Date = DateTime.Now,
-                    IsGone = "At Home",
+
                 },
                 new Product
                 {
@@ -183,8 +193,9 @@ namespace API.Data
                     Type = "Air",
                     Weight = 2,
                     Quantity = 1,
+                     isWeighed = false,
                     Date = DateTime.Now,
-                    IsGone = "At Home",
+
                 },
                 new Product
                 {
@@ -197,8 +208,9 @@ namespace API.Data
                     Type = "Air",
                     Weight = 2,
                     Quantity = 1,
+                     isWeighed = true,
                     Date = DateTime.Now,
-                    IsGone = "At Home",
+
                 },
                 new Product
                 {
@@ -211,8 +223,9 @@ namespace API.Data
                     Type = "Air",
                     Weight = 2,
                     Quantity = 1,
+                     isWeighed = true,
                     Date = DateTime.Now,
-                    IsGone = "Shipped",
+
                 },
                 new Product
                 {
@@ -225,8 +238,9 @@ namespace API.Data
                     Type = "Air",
                     Weight = 2,
                     Quantity = 1,
+                     isWeighed = true,
                     Date = DateTime.Now,
-                    IsGone = "At Home",
+
                 },
                 new Product
                 {
@@ -239,8 +253,9 @@ namespace API.Data
                     Type = "Air",
                     Weight = 2,
                     Quantity = 1,
+                     isWeighed = false,
                     Date = DateTime.Now,
-                    IsGone = "At Home",
+
                 },
             };
 

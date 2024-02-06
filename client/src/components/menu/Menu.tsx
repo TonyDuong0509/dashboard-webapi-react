@@ -50,14 +50,8 @@ const menu = [
 ];
 
 const Menu = () => {
-  const {
-    productsLoaded,
-    filtersLoaded,
-    types,
-    brands,
-    isGone,
-    productParams,
-  } = useAppSelector((state) => state.product);
+  const { productsLoaded, filtersLoaded, types, brands, productParams } =
+    useAppSelector((state) => state.product);
 
   const { user } = useAppSelector((state) => state.account);
   const dispatch = useAppDispatch();
@@ -103,15 +97,6 @@ const Menu = () => {
             checked={productParams.brands}
             onChange={(items: string[]) =>
               dispatch(setProductParams({ brands: items }))
-            }
-          />
-        </Paper>
-        <Paper sx={{ p: 2, mb: 2 }}>
-          <CheckboxButtons
-            items={isGone}
-            checked={productParams.isGone}
-            onChange={(items: string[]) =>
-              dispatch(setProductParams({ isGone: items }))
             }
           />
         </Paper>

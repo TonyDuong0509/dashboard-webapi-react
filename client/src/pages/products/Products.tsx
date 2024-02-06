@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./Products.scss";
 import Add from "../../components/add/Add";
 import LoadingComponent from "../../app/layout/LoadingComponent";
@@ -8,6 +8,8 @@ import {
   fetchProductsAsync,
   productSelectors,
   setPageNumber,
+  updateProductIsWeighedAsync,
+  setIsWeighed, // Added import
 } from "../../app/slice/productSlice";
 import { Link } from "react-router-dom";
 import { Button, Grid } from "@mui/material";
@@ -18,11 +20,11 @@ import AppPagination from "../../components/appPagination/AppPagination";
 const columns: GridColDef[] = [
   {
     field: "pictureUrl",
-    headerName: "Image",
+    headerName: "Img",
     width: 50,
     renderCell: (params) => {
       return (
-        <Link to={`/products/${params.row.productId}`}>
+        <Link to={`/products/${params.row.id}`}>
           <img
             src={params.row.pictureUrl || "/noavatar.png"}
             alt={params.row.name}
@@ -46,8 +48,8 @@ const columns: GridColDef[] = [
   {
     field: "cod",
     type: "number",
-    headerName: "COD (VNĐ)",
-    width: 110,
+    headerName: "COD ",
+    width: 90,
   },
   {
     field: "weight",
@@ -73,22 +75,28 @@ const columns: GridColDef[] = [
     width: 80,
     type: "number",
   },
-  {
-    field: "isGone",
-    headerName: "Is Gone",
-    width: 80,
-    type: "string",
-  },
 ];
 
 const Products = () => {
   const [open, setOpen] = useState(false);
+
   const products = useAppSelector(productSelectors.selectAll);
-  const { productsLoaded, filtersLoaded, metaData } = useAppSelector(
-    (state) => state.product
-  );
+  const { productsLoaded, filtersLoaded, metaData, isWeighedMap } =
+    useAppSelector((state) => state.product);
   const { user } = useAppSelector((state) => state.account);
   const dispatch = useAppDispatch();
+
+  const handleIsWeighedClick = useCallback(
+    (row: any) => {
+      dispatch(
+        updateProductIsWeighedAsync({
+          id: row.id,
+          isWeighed: !row.isWeighed,
+        })
+      );
+    },
+    [dispatch]
+  );
 
   useEffect(() => {
     if (!productsLoaded) dispatch(fetchProductsAsync());
@@ -97,6 +105,17 @@ const Products = () => {
   useEffect(() => {
     if (!filtersLoaded) dispatch(fetchFilters());
   }, [dispatch, filtersLoaded]);
+
+  useEffect(() => {
+    dispatch(
+      setIsWeighed(
+        products.reduce((map, product) => {
+          map[product.id] = product.isWeighed;
+          return map;
+        }, {} as Record<number, boolean>)
+      )
+    );
+  }, [products, dispatch]);
 
   if (!filtersLoaded) return <LoadingComponent message="Loading products..." />;
 
@@ -114,7 +133,13 @@ const Products = () => {
           </Button>
         )}
       </div>
-      <DataTable slug="products" columns={columns} rows={products} />
+      <DataTable
+        slug="products"
+        columns={columns}
+        rows={products}
+        handleIsWeighedClick={handleIsWeighedClick}
+        isWeighedMap={isWeighedMap}
+      />
 
       <Grid item xs={3} />
       <Grid item xs={9} sx={{ mb: 2 }}>

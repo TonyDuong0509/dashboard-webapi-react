@@ -22,7 +22,7 @@ namespace API.Controllers
             var query = _context.Products
                 .Sort(productParams.OrderBy)
                 .Search(productParams.SearchTerm)
-                .Filter(productParams.Brands, productParams.Types, productParams.IsGone)
+                .Filter(productParams.Brands, productParams.Types)
                 .AsQueryable();
 
             var products = await PagedList<Product>.ToPagedList(query, productParams.PageNumber, productParams.PageSize);
@@ -46,9 +46,22 @@ namespace API.Controllers
         {
             var brands = await _context.Products.Select(x => x.Brand).Distinct().ToListAsync();
             var types = await _context.Products.Select(x => x.Type).Distinct().ToListAsync();
-            var isGone = await _context.Products.Select(x => x.IsGone).Distinct().ToListAsync();
 
-            return Ok(new { brands, types, isGone });
+            return Ok(new { brands, types });
+        }
+
+        [HttpPatch("{id}/updatedIsWeighed")]
+        public async Task<ActionResult> UpdateIsWeighed(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+            if (product == null) return NotFound();
+
+            product.isWeighed = !product.isWeighed;
+
+            var result = await _context.SaveChangesAsync() > 0;
+            if (result) return Ok("Update successfully");
+
+            return BadRequest(new ProblemDetails { Title = "Problem updating weight of product..." });
         }
 
         [HttpDelete("{id}")]
