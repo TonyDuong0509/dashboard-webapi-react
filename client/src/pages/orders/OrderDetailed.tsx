@@ -22,7 +22,7 @@ const OrderDetailed = ({ order, setSelectedOrder }: Props) => {
           size="large"
           variant="contained"
         >
-          Back to orders
+          Trở lại danh sách chuyến đi
         </Button>
       </Box>
       <BasketTable items={order.orderItems as BasketItem[]} isBasket={false} />

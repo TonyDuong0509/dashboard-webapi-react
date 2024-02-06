@@ -24,7 +24,7 @@ namespace API.Extensions
 
             var lowerCaseSearchTerm = searchTerm.Trim().ToLower();
 
-            return query.Where(x => x.Name.ToLower().Contains(lowerCaseSearchTerm));
+            return query.Where(x => x.Name.ToLower().Contains(lowerCaseSearchTerm) || x.Description.ToLower().Contains(lowerCaseSearchTerm));
         }
 
         public static IQueryable<Product> Filter(this IQueryable<Product> query, string brands, string types)

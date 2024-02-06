@@ -18,7 +18,7 @@ import AddressForm from "./AddressForm";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { clearBasket } from "../../app/slice/basketSlice";
 
-const steps = ["Shipping address", "Review your order"];
+const steps = ["Thông tin chuyến đi", "Kiểm tra lại hàng"];
 
 function getStepContent(step: number) {
   switch (step) {
@@ -76,7 +76,7 @@ export default function CheckoutPage() {
         sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
       >
         <Typography component="h1" variant="h4" align="center">
-          CheckOut
+          Check Out
         </Typography>
         <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
           {steps.map((label) => (
@@ -89,10 +89,10 @@ export default function CheckoutPage() {
           {activeStep === steps.length ? (
             <>
               <Typography variant="h5" gutterBottom>
-                Thank you for your order.
+                Cảm ơn đơn hàng của bạn !
               </Typography>
               <Typography variant="subtitle1">
-                Your order number is #{orderNumber}.
+                Mã chuyến đi của bạn là #{orderNumber}.
                 <span style={{ fontSize: 20 }}>
                   Website is coded by{" "}
                   <span
@@ -102,7 +102,7 @@ export default function CheckoutPage() {
                       color: "violet",
                     }}
                   >
-                    Dương Anh Hào
+                    Dương Anh Hào đẹp trai
                   </span>
                 </span>
               </Typography>
@@ -113,7 +113,7 @@ export default function CheckoutPage() {
               <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                 {activeStep !== 0 && (
                   <Button onClick={handleBack} sx={{ mt: 3, ml: 1 }}>
-                    Back
+                    Trở lại
                   </Button>
                 )}
                 <LoadingButton

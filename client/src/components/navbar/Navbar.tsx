@@ -52,7 +52,7 @@ const Navbar = () => {
           <img src="/vietphil247.jpeg" alt="" />
         </Link>
         <Link to={"/"}>
-          <h1>VietPhil247</h1>
+          <h1>VietPhil247 - 0986.518.949</h1>
         </Link>
       </div>
       {user ? (

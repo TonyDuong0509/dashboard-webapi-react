@@ -21,11 +21,11 @@ export default function BasketSummary() {
         <Table>
           <TableBody>
             <TableRow>
-              <TableCell colSpan={2}>Total COD</TableCell>
+              <TableCell colSpan={2}>Tổng COD</TableCell>
               <TableCell align="right">{currencyFormat(totalCOD)}</TableCell>
             </TableRow>
             <TableRow>
-              <TableCell colSpan={2}>Total Products</TableCell>
+              <TableCell colSpan={2}>Tổng hàng</TableCell>
               <TableCell align="right">{totalProducts}</TableCell>
             </TableRow>
           </TableBody>

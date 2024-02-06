@@ -57,27 +57,27 @@ const ProductDetails = () => {
           <Table>
             <TableBody>
               <TableRow>
-                <TableCell sx={{ color: "white" }}>Owner</TableCell>
+                <TableCell sx={{ color: "white" }}>Khách</TableCell>
                 <TableCell sx={{ color: "white" }}>{product.name}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell sx={{ color: "white" }}>Description</TableCell>
+                <TableCell sx={{ color: "white" }}>Mô tả</TableCell>
                 <TableCell sx={{ color: "white" }}>
                   {product.description}
                 </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell sx={{ color: "white" }}>Weight</TableCell>
+                <TableCell sx={{ color: "white" }}>Khối lượng</TableCell>
                 <TableCell sx={{ color: "white" }}>
                   {product.weight} kg
                 </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell sx={{ color: "white" }}>Type</TableCell>
+                <TableCell sx={{ color: "white" }}>Loại</TableCell>
                 <TableCell sx={{ color: "white" }}>{product.type}</TableCell>
               </TableRow>
               <TableRow>
-                <TableCell sx={{ color: "white" }}>Quantity</TableCell>
+                <TableCell sx={{ color: "white" }}>Số lượng</TableCell>
                 <TableCell sx={{ color: "white" }}>
                   {product.quantity}
                 </TableCell>

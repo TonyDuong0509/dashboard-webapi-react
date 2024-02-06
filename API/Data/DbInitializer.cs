@@ -35,58 +35,28 @@ namespace API.Data
             {
                 new Product
                 {
-                    Name = "Product 1",
+                    Name = "Vân Elysia",
                     Description =
-                        "Have 2 carton boxes",
+                        "KBE - 7/2/2024: Đã thanh toán",
                     COD = 20000,
-                    PictureUrl = "/images/products/p1.png",
-                    Brand = "SHOPEE",
-                    Type = "Sea",
-                    Weight = 5.5,
-                    Quantity = 1,
-                     isWeighed = true,
-                    Date = DateTime.Now,
-
-                },
-                new Product
-                {
-                    Name = "Product 2",
-                    Description = "Just has 1 carton box",
-                    COD = 200000,
-                    PictureUrl = "/images/products/p2.png",
-                    Brand = "GHTK",
-                    Type = "Air",
-                    Weight = 10,
-                    Quantity = 1,
+                    PictureUrl = "/images/products/p1.jpg",
+                    Brand = "Khách hàng",
+                    Type = "SEA",
+                    Weight = 0,
+                    Quantity = 3,
                      isWeighed = false,
                     Date = DateTime.Now,
 
                 },
                 new Product
                 {
-                    Name = "Product 3",
-                    Description =
-                        "Have 2 carton boxes",
-                    COD = 1800000,
-                    PictureUrl = "/images/products/p3.png",
-                    Brand = "VIETNAM POST",
-                    Type = "Sea",
-                    Weight = 7.9,
-                    Quantity = 1,
-                     isWeighed = true,
-                    Date = DateTime.Now,
-
-                },
-                new Product
-                {
-                    Name = "Product 4",
-                    Description =
-                        "Have 3 carton boxes",
-                    COD = 300000,
-                    PictureUrl = "/images/products/p4.png",
-                    Brand = "Customer",
-                    Type = "Sea",
-                    Weight = 16,
+                    Name = "Zalo Turbo",
+                    Description = "KBE - 7/2/2024: Đã thanh toán",
+                    COD = 1548000,
+                    PictureUrl = "/images/products/p2.jpg",
+                    Brand = "Khách hàng",
+                    Type = "SEA",
+                    Weight = 20.85,
                     Quantity = 2,
                      isWeighed = false,
                     Date = DateTime.Now,
@@ -94,14 +64,29 @@ namespace API.Data
                 },
                 new Product
                 {
-                    Name = "Product 5",
+                    Name = "Bé Ty",
                     Description =
-                        "Just has 1 carton box",
+                        "KBE - 7/2/2024: Có 2 kiện",
                     COD = 0,
-                    PictureUrl = "/images/products/p5.jpg",
-                    Brand = "VIETTEL POST",
-                    Type = "Air",
-                    Weight = 2,
+                    PictureUrl = "/images/products/p3.jpg",
+                    Brand = "Khách hàng",
+                    Type = "SEA",
+                    Weight = 13.1,
+                    Quantity = 2,
+                     isWeighed = false,
+                    Date = DateTime.Now,
+
+                },
+                new Product
+                {
+                    Name = "Fb Nguyen Lina",
+                    Description =
+                        "KBE - 7/2/2024: 1 kiện Vali",
+                    COD = 0,
+                    PictureUrl = "/images/products/p4.jpg",
+                    Brand = "Khách hàng",
+                    Type = "SEA",
+                    Weight = 26.6,
                     Quantity = 1,
                      isWeighed = false,
                     Date = DateTime.Now,
@@ -109,44 +94,14 @@ namespace API.Data
                 },
                 new Product
                 {
-                    Name = "Product 6",
+                    Name = "Narima Phan Hồng Vân",
                     Description =
-                        "Just has 1 carton box",
+                        "KBE - 7/2/2024: 1 kiện carton",
                     COD = 0,
                     PictureUrl = "/images/products/p5.jpg",
-                    Brand = "VIETTEL POST",
-                    Type = "Air",
-                    Weight = 2,
-                    Quantity = 1,
-                     isWeighed = true,
-                    Date = DateTime.Now,
-
-                },
-                new Product
-                {
-                    Name = "Product 7",
-                    Description =
-                        "Just has 1 carton box",
-                    COD = 0,
-                    PictureUrl = "/images/products/p5.jpg",
-                    Brand = "VIETTEL POST",
-                    Type = "Air",
-                    Weight = 2,
-                    Quantity = 1,
-                     isWeighed = true,
-                    Date = DateTime.Now,
-
-                },
-                new Product
-                {
-                    Name = "Product 8",
-                    Description =
-                        "Just has 1 carton box",
-                    COD = 0,
-                    PictureUrl = "/images/products/p5.jpg",
-                    Brand = "VIETTEL POST",
-                    Type = "Air",
-                    Weight = 2,
+                    Brand = "Khách hàng",
+                    Type = "SEA",
+                    Weight = 8.85,
                     Quantity = 1,
                      isWeighed = false,
                     Date = DateTime.Now,
@@ -154,44 +109,14 @@ namespace API.Data
                 },
                 new Product
                 {
-                    Name = "Product 9",
+                    Name = "JN Lim",
                     Description =
-                        "Just has 1 carton box",
+                        "KBE - 7/2/2024: 1 kiện carton",
                     COD = 0,
-                    PictureUrl = "/images/products/p5.jpg",
-                    Brand = "VIETTEL POST",
-                    Type = "Air",
-                    Weight = 2,
-                    Quantity = 1,
-                     isWeighed = true,
-                    Date = DateTime.Now,
-
-                },
-                new Product
-                {
-                    Name = "Product 10",
-                    Description =
-                        "Just has 1 carton box",
-                    COD = 0,
-                    PictureUrl = "/images/products/p5.jpg",
-                    Brand = "VIETTEL POST",
-                    Type = "Air",
-                    Weight = 2,
-                    Quantity = 1,
-                     isWeighed = true,
-                    Date = DateTime.Now,
-
-                },
-                new Product
-                {
-                    Name = "Product 11",
-                    Description =
-                        "Just has 1 carton box",
-                    COD = 0,
-                    PictureUrl = "/images/products/p5.jpg",
-                    Brand = "VIETTEL POST",
-                    Type = "Air",
-                    Weight = 2,
+                    PictureUrl = "/images/products/p6.jpg",
+                    Brand = "Khách hàng",
+                    Type = "SEA",
+                    Weight = 2.55,
                     Quantity = 1,
                      isWeighed = false,
                     Date = DateTime.Now,
@@ -199,64 +124,79 @@ namespace API.Data
                 },
                 new Product
                 {
-                    Name = "Product 12",
+                    Name = "Tuyết Anh - kiện 1",
                     Description =
-                        "Just has 1 carton box",
+                        "KBE - 7/2/2024: 2 kiện carton",
                     COD = 0,
-                    PictureUrl = "/images/products/p5.jpg",
-                    Brand = "VIETTEL POST",
-                    Type = "Air",
-                    Weight = 2,
-                    Quantity = 1,
-                     isWeighed = true,
-                    Date = DateTime.Now,
-
-                },
-                new Product
-                {
-                    Name = "Product 13",
-                    Description =
-                        "Just has 1 carton box",
-                    COD = 0,
-                    PictureUrl = "/images/products/p5.jpg",
-                    Brand = "VIETTEL POST",
-                    Type = "Air",
-                    Weight = 2,
-                    Quantity = 1,
-                     isWeighed = true,
-                    Date = DateTime.Now,
-
-                },
-                new Product
-                {
-                    Name = "Product 14",
-                    Description =
-                        "Just has 1 carton box",
-                    COD = 0,
-                    PictureUrl = "/images/products/p5.jpg",
-                    Brand = "VIETTEL POST",
-                    Type = "Air",
-                    Weight = 2,
-                    Quantity = 1,
-                     isWeighed = true,
-                    Date = DateTime.Now,
-
-                },
-                new Product
-                {
-                    Name = "Product 15",
-                    Description =
-                        "Just has 1 carton box",
-                    COD = 0,
-                    PictureUrl = "/images/products/p5.jpg",
-                    Brand = "VIETTEL POST",
-                    Type = "Air",
-                    Weight = 2,
+                    PictureUrl = "/images/products/p7.jpg",
+                    Brand = "Khách hàng",
+                    Type = "SEA",
+                    Weight = 4.2,
                     Quantity = 1,
                      isWeighed = false,
                     Date = DateTime.Now,
 
                 },
+                new Product
+                {
+                    Name = "Tuyết Anh - kiện 2",
+                    Description =
+                        "KBE - 7/2/2024: 2 kiện carton",
+                    COD = 0,
+                    PictureUrl = "/images/products/p8.jpg",
+                    Brand = "Khách hàng",
+                    Type = "SEA",
+                    Weight = 1.75,
+                    Quantity = 1,
+                     isWeighed = false,
+                    Date = DateTime.Now,
+
+                },
+                new Product
+                {
+                    Name = "Peter Nguyễn Văn Tú",
+                    Description =
+                       "KBE - 7/2/2024: 1 kiện carton",
+                    COD = 0,
+                    PictureUrl = "/images/products/p9.jpg",
+                    Brand = "Khách hàng",
+                    Type = "SEA",
+                    Weight = 34.4,
+                    Quantity = 1,
+                     isWeighed = false,
+                    Date = DateTime.Now,
+
+                },
+                new Product
+                {
+                    Name = "Fb Yumi Thảo",
+                    Description =
+                        "KBE - 7/2/2024: 3 kiện carton. Đã thanh toán",
+                    COD = 0,
+                    PictureUrl = "/images/products/p10.jpg",
+                    Brand = "Khách hàng",
+                    Type = "SEA",
+                    Weight = 0,
+                    Quantity = 3,
+                     isWeighed = false,
+                    Date = DateTime.Now,
+
+                },
+                new Product
+                {
+                    Name = "Phương Châm",
+                    Description =
+                       "KBE - 7/2/2024: 1 kiện carton",
+                    COD = 0,
+                    PictureUrl = "/images/products/p11.jpg",
+                    Brand = "Khách hàng",
+                    Type = "SEA",
+                    Weight = 1,
+                    Quantity = 1,
+                     isWeighed = false,
+                    Date = DateTime.Now,
+
+                }
             };
 
             foreach (var product in products)

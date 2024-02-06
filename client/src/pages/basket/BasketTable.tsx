@@ -29,13 +29,13 @@ const BasketTable = ({ items, isBasket = true }: Props) => {
         <TableHead>
           <TableRow>
             <TableCell sx={{ fontSize: 24, fontWeight: "bold" }}>
-              Customer
+              Khách hàng
             </TableCell>
             <TableCell sx={{ fontSize: 24, fontWeight: "bold" }} align="center">
               COD
             </TableCell>
             <TableCell sx={{ fontSize: 24, fontWeight: "bold" }} align="center">
-              Quantity
+              Số lượng
             </TableCell>
             {isBasket && <TableCell align="right"></TableCell>}
           </TableRow>

@@ -13,7 +13,7 @@ const ProductSearch = () => {
   }, 2000);
   return (
     <TextField
-      label="Search customer"
+      label="Search customer - products..."
       variant="outlined"
       fullWidth
       value={searchTerm || ""}

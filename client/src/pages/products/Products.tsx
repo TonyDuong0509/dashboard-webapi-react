@@ -20,7 +20,7 @@ import AppPagination from "../../components/appPagination/AppPagination";
 const columns: GridColDef[] = [
   {
     field: "pictureUrl",
-    headerName: "Img",
+    headerName: "Ảnh",
     width: 50,
     renderCell: (params) => {
       return (
@@ -36,13 +36,13 @@ const columns: GridColDef[] = [
   {
     field: "name",
     type: "string",
-    headerName: "Owner",
+    headerName: "Khách",
     width: 150,
   },
   {
     field: "description",
     type: "string",
-    headerName: "Description",
+    headerName: "Mô tả",
     width: 140,
   },
   {
@@ -54,12 +54,12 @@ const columns: GridColDef[] = [
   {
     field: "weight",
     type: "number",
-    headerName: "Weight",
+    headerName: "Kg",
     width: 70,
   },
   {
     field: "type",
-    headerName: "Type",
+    headerName: "Loại",
     width: 70,
     type: "string",
   },
@@ -71,7 +71,7 @@ const columns: GridColDef[] = [
   },
   {
     field: "quantity",
-    headerName: "Quantity",
+    headerName: "Số hàng",
     width: 80,
     type: "number",
   },
@@ -122,14 +122,14 @@ const Products = () => {
   return (
     <div className="products">
       <div className="info">
-        <h2>List Products</h2>
+        <h2>Danh sách hàng hoá</h2>
         {user && (
           <Button
             variant="contained"
             onClick={() => setOpen(true)}
             size="small"
           >
-            Add New Product
+            Thêm hàng
           </Button>
         )}
       </div>

@@ -1,16 +1,14 @@
 .footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 30px;
+  background-color: grey;
+  padding: 40px 0;
+}
 
-  span {
-    &:first-child {
-      font-weight: bold;
-    }
+.footer a {
+  color: black;
+  text-decoration: none;
+  font-size: 16px;
+}
 
-    &:last-child {
-      font-size: 14px;
-    }
-  }
+.footer a:hover {
+  color: violet;
 }

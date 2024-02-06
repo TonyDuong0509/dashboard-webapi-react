@@ -17,7 +17,7 @@ const menu = [
     listItems: [
       {
         id: 1,
-        title: "Homepage",
+        title: "Trang chủ",
         url: "/",
         icon: "/home.svg",
       },
@@ -29,19 +29,19 @@ const menu = [
     listItems: [
       {
         id: 1,
-        title: "Users",
+        title: "Khách hàng",
         url: "/users",
         icon: "/user.svg",
       },
       {
         id: 2,
-        title: "Products",
+        title: "Hàng kho",
         url: "/products",
         icon: "/product.svg",
       },
       {
         id: 3,
-        title: "Orders",
+        title: "Chuyến đi",
         url: "/orders",
         icon: "/order.svg",
       },

@@ -8,7 +8,13 @@ export default function BasketPage() {
   const { basket } = useAppSelector((state) => state.basket);
 
   if (!basket)
-    return <Typography variant="h3">Your basket is empty</Typography>;
+    return (
+      <Link to="/products">
+        <Typography variant="h3">
+          Kiện hàng của bạn rỗng - hãy thêm hàng vào !
+        </Typography>
+      </Link>
+    );
 
   return (
     <>
@@ -24,7 +30,7 @@ export default function BasketPage() {
             size="large"
             fullWidth
           >
-            CheckOut
+            Tiếp tục
           </Button>
         </Grid>
       </Grid>
