@@ -57,7 +57,8 @@ export default function CheckoutPage() {
           shippingAddress,
         });
         const orderID = order.id;
-        dispatch(updateProductQuantityAsync(orderID));
+        const productId = order.productId;
+        dispatch(updateProductQuantityAsync(productId));
         dispatch(clearBasket());
         dispatch(fetchProductsAsync());
         setOrderNumber(orderID);

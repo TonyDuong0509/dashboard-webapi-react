@@ -77,7 +77,7 @@ namespace API.Controllers
                 OrderItems = items,
                 BuyerId = User.Identity.Name,
                 ShippingAddress = orderDto.ShippingAddress,
-                OrderDate = DateTime.Now,
+                OrderDate = DateTime.UtcNow,
                 TotalProducts = totalProducts
             };
             _context.Orders.Add(order);

@@ -25,6 +25,10 @@ const BasketTable = ({ items, isBasket = true }: Props) => {
   const { status } = useAppSelector((state) => state.basket);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  useEffect(() => {
+    Modal.setAppElement("#root");
+  }, []);
+
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -34,9 +38,7 @@ const BasketTable = ({ items, isBasket = true }: Props) => {
   };
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    Modal.setAppElement("#root");
-  }, []);
+  const appElement = document.getElementById("root");
 
   return (
     <TableContainer component={Paper}>
@@ -87,7 +89,7 @@ const BasketTable = ({ items, isBasket = true }: Props) => {
                     isOpen={isModalOpen}
                     onRequestClose={closeModal}
                     contentLabel="Product Image Modal"
-                    appElement={document.getElementById("root")}
+                    appElement={appElement || undefined}
                     style={{
                       overlay: {
                         backgroundColor: "rgba(0, 0, 0, 0.5)",

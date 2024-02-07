@@ -25,7 +25,7 @@ const ProductDetails = () => {
   const dispatch = useAppDispatch();
   const { status: productStatus } = useAppSelector((state) => state.product);
   const product = useAppSelector((state) =>
-    productSelectors.selectById(state, id!)
+    productSelectors.selectById(state, parseInt(id!))
   );
 
   useEffect(() => {

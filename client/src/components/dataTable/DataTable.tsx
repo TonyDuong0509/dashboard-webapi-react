@@ -5,6 +5,7 @@ import { LoadingButton } from "@mui/lab";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import { addBasketItemAsync } from "../../app/slice/basketSlice";
 import ProductSearch from "../productSearch/ProductSearch";
+import { useState } from "react";
 
 interface Props {
   columns: GridColDef[];
@@ -17,6 +18,9 @@ interface Props {
 const DataTable = (props: Props) => {
   const { status, basket } = useAppSelector((state) => state.basket);
   const { user } = useAppSelector((state) => state.account);
+  const [addedToBasket, setAddedToBasket] = useState<{
+    [key: number]: boolean;
+  }>({});
   const dispatch = useAppDispatch();
 
   const CustomToolbar = () => {
@@ -35,25 +39,27 @@ const DataTable = (props: Props) => {
       const isInBasket = basket?.items.some(
         (item) => item.productId === params.row.id
       );
-      const isMaxQuantityReached =
-        isInBasket &&
-        basket.items.find((item) => item.productId === params.row.id)
-          ?.quantity >= params.row.quantity;
 
-      if (!params.row.quantity || isMaxQuantityReached) {
-        return (
-          <div className="action">
-            <Link to={`/${props.slug}/${params.row.id}`}>
-              <img src="/view.svg" alt="" />
-            </Link>
-            {user && (
-              <div className="delete">
-                <img src="/delete.svg" alt="" />
-              </div>
-            )}
-          </div>
+      const basketItem = basket?.items.find(
+        (item) => item.productId === params.row.id
+      );
+      const isMaxQuantityReached =
+        basketItem && basketItem.quantity >= params.row.quantity;
+
+      const handleAddToBasket = () => {
+        if (!params.row.quantity || addedToBasket[params.row.id]) return;
+
+        dispatch(
+          addBasketItemAsync({
+            productId: params.row.id,
+            quantity: params.row.quantity,
+          })
         );
-      }
+        setAddedToBasket((prev) => ({
+          ...prev,
+          [params.row.id]: true,
+        }));
+      };
 
       return (
         <div className="action">
@@ -62,21 +68,15 @@ const DataTable = (props: Props) => {
           </Link>
           {user && (
             <>
-              <LoadingButton
-                loading={status.includes("pendingAddItem" + params.row.id)}
-                onClick={() =>
-                  dispatch(
-                    addBasketItemAsync({
-                      productId: params.row.id,
-                      quantity: params.row.quantity,
-                    })
-                  )
-                }
-                size="small"
-              >
-                <img src="/basket.svg" alt="" />
-              </LoadingButton>
-
+              {!isInBasket && !isMaxQuantityReached && (
+                <LoadingButton
+                  loading={status.includes("pendingAddItem" + params.row.id)}
+                  onClick={handleAddToBasket}
+                  size="small"
+                >
+                  <img src="/basket.svg" alt="" />
+                </LoadingButton>
+              )}
               <div className="delete">
                 <img src="/delete.svg" alt="" />
               </div>

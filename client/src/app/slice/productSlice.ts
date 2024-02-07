@@ -95,9 +95,9 @@ export const updateProductIsWeighedAsync = createAsyncThunk<
 
 export const updateProductQuantityAsync = createAsyncThunk(
   "products/updateProductQuantityAsync",
-  async (productId: number) => {
-    await agent.Product.updateQuantity(productId, 0);
-    return productId;
+  async (id: number) => {
+    await agent.Product.updateQuantity(id, 0);
+    return id;
   }
 );
 
@@ -197,11 +197,11 @@ export const productSlice = createSlice({
       state.status = "idle";
     });
     builder.addCase(updateProductQuantityAsync.fulfilled, (state, action) => {
-      const productId = action.payload;
-      const updatedProduct = state.entities[productId];
+      const id = action.payload;
+      const updatedProduct = state.entities[id];
       if (updatedProduct) {
         productsAdapter.updateOne(state, {
-          id: productId,
+          id,
           changes: { quantity: 0 },
         });
       }

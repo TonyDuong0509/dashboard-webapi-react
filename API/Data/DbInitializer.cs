@@ -45,7 +45,7 @@ namespace API.Data
                     Weight = 0,
                     Quantity = 1,
                      isWeighed = false,
-                    Date = DateTime.Now,
+                    Date = DateTime.UtcNow,
 
                 },
                 new Product
@@ -59,7 +59,7 @@ namespace API.Data
                     Weight = 20.85,
                     Quantity = 2,
                      isWeighed = false,
-                    Date = DateTime.Now,
+                    Date = DateTime.UtcNow,
 
                 },
                 new Product
@@ -74,7 +74,7 @@ namespace API.Data
                     Weight = 13.1,
                     Quantity = 2,
                      isWeighed = false,
-                    Date = DateTime.Now,
+                    Date = DateTime.UtcNow,
 
                 },
                 new Product
@@ -89,7 +89,7 @@ namespace API.Data
                     Weight = 26.6,
                     Quantity = 1,
                      isWeighed = false,
-                    Date = DateTime.Now,
+                    Date = DateTime.UtcNow,
 
                 },
                 new Product
@@ -104,7 +104,7 @@ namespace API.Data
                     Weight = 8.85,
                     Quantity = 1,
                      isWeighed = false,
-                    Date = DateTime.Now,
+                    Date = DateTime.UtcNow,
 
                 },
                 new Product
@@ -119,7 +119,7 @@ namespace API.Data
                     Weight = 2.55,
                     Quantity = 1,
                      isWeighed = false,
-                    Date = DateTime.Now,
+                    Date = DateTime.UtcNow,
 
                 },
                 new Product
@@ -134,7 +134,7 @@ namespace API.Data
                     Weight = 4.2,
                     Quantity = 1,
                      isWeighed = false,
-                    Date = DateTime.Now,
+                    Date = DateTime.UtcNow,
 
                 },
                 new Product
@@ -149,7 +149,7 @@ namespace API.Data
                     Weight = 1.75,
                     Quantity = 1,
                      isWeighed = false,
-                    Date = DateTime.Now,
+                    Date = DateTime.UtcNow,
 
                 },
                 new Product
@@ -164,7 +164,7 @@ namespace API.Data
                     Weight = 34.4,
                     Quantity = 1,
                      isWeighed = false,
-                    Date = DateTime.Now,
+                    Date = DateTime.UtcNow,
 
                 },
                 new Product
@@ -179,7 +179,7 @@ namespace API.Data
                     Weight = 0,
                     Quantity = 3,
                      isWeighed = false,
-                    Date = DateTime.Now,
+                    Date = DateTime.UtcNow,
 
                 },
                 new Product
@@ -194,7 +194,7 @@ namespace API.Data
                     Weight = 1,
                     Quantity = 1,
                      isWeighed = false,
-                    Date = DateTime.Now,
+                    Date = DateTime.UtcNow,
 
                 }
             };
