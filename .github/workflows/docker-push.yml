@@ -25,7 +25,7 @@ jobs:
           context: "{{defaultContext}}:API"
           push: true
           tags: matthewduong/vietphil247:latest
-    deploy:
+  deploy:
     needs: docker
     name: Deploy app
     runs-on: ubuntu-latest
