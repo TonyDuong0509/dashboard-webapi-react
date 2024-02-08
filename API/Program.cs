@@ -42,13 +42,10 @@ builder.Services.AddSwaggerGen(c =>
         { jwtSecurityScheme, Array.Empty<string>() }
     });
 });
-// builder.Services.AddDbContext<StoreContext>(opt =>
-// {
-//     opt.UseNpgsql(builder.Configuration.GetConnectionString("SqliteConnection"));
-// });
+
 string connString;
 if (builder.Environment.IsDevelopment())
-    connString = builder.Configuration.GetConnectionString("SqliteConnection");
+    connString = builder.Configuration.GetConnectionString("NpgsqlConnection");
 else
 {
     // Use connection string provided at runtime by FlyIO.
@@ -72,6 +69,7 @@ builder.Services.AddDbContext<StoreContext>(opt =>
 {
     opt.UseNpgsql(connString);
 });
+
 builder.Services.AddCors();
 builder.Services.AddIdentityCore<User>(opt =>
 {
