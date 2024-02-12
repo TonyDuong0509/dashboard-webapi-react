@@ -1,19 +1,18 @@
-# fly.toml app configuration file generated for vietphil247-api on 2024-02-08T15:22:06+07:00
+# fly.toml app configuration file generated for vietphil247 on 2024-02-12T22:03:02+07:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = 'vietphil247'
-primary_region = 'sin'
+primary_region = 'nrt'
 
 [build]
   image = 'matthewduong/vietphil247:latest'
 
 [env]
-  ASPNETCORE_URLS="http://+:8080"
-  Cloudinary__CloudName="djqhhjz8u"
-  Cloudinary__ApiKey="538919813529894"
-
+  ASPNETCORE_URLS = 'http://+:8080'
+  Cloudinary__ApiKey = '538919813529894'
+  Cloudinary__CloudName = 'djqhhjz8u'
 
 [http_service]
   internal_port = 8080
