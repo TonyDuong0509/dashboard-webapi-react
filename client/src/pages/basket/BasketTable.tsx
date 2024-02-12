@@ -15,6 +15,7 @@ import { removeBasketItemAsync } from "../../app/slice/basketSlice";
 import { useAppSelector, useAppDispatch } from "../../app/store/configureStore";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
+import { currencyFormat } from "../../app/util/util";
 
 interface Props {
   items: BasketItem[];
@@ -23,19 +24,28 @@ interface Props {
 
 const BasketTable = ({ items, isBasket = true }: Props) => {
   const { status } = useAppSelector((state) => state.basket);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalOpenStates, setModalOpenStates] = useState<{
+    [key: number]: boolean;
+  }>({});
 
   useEffect(() => {
     Modal.setAppElement("#root");
   }, []);
 
-  const openModal = () => {
-    setIsModalOpen(true);
+  const openModal = (productId: number) => {
+    setModalOpenStates((prevState) => ({
+      ...prevState,
+      [productId]: true,
+    }));
   };
 
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const closeModal = (productId: number) => {
+    setModalOpenStates((prevState) => ({
+      ...prevState,
+      [productId]: false,
+    }));
   };
+
   const dispatch = useAppDispatch();
 
   const appElement = document.getElementById("root");
@@ -74,7 +84,7 @@ const BasketTable = ({ items, isBasket = true }: Props) => {
                       marginRight: 20,
                       cursor: "pointer",
                     }}
-                    onClick={openModal}
+                    onClick={() => openModal(item.productId)}
                   />
                   <span
                     style={{
@@ -86,8 +96,8 @@ const BasketTable = ({ items, isBasket = true }: Props) => {
                     {item.name}
                   </span>
                   <Modal
-                    isOpen={isModalOpen}
-                    onRequestClose={closeModal}
+                    isOpen={modalOpenStates[item.productId]}
+                    onRequestClose={() => closeModal(item.productId)}
                     contentLabel="Product Image Modal"
                     appElement={appElement || undefined}
                     style={{
@@ -110,7 +120,7 @@ const BasketTable = ({ items, isBasket = true }: Props) => {
                     }}
                   >
                     <button
-                      onClick={closeModal}
+                      onClick={() => closeModal(item.productId)}
                       style={{
                         position: "absolute",
                         top: "10px",
@@ -132,9 +142,7 @@ const BasketTable = ({ items, isBasket = true }: Props) => {
                   </Modal>
                 </Box>
               </TableCell>
-              <TableCell align="center">
-                {(item.cod / 1000).toFixed(3)} VNĐ
-              </TableCell>
+              <TableCell align="center">{currencyFormat(item.cod)}</TableCell>
               <TableCell align="center">{item.quantity}</TableCell>
               {isBasket && (
                 <TableCell align="center">
