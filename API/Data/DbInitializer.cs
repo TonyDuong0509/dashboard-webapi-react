@@ -195,7 +195,188 @@ namespace API.Data
                     Quantity = 1,
                      isWeighed = false,
                     Date = DateTime.UtcNow,
-
+                },
+                new Product
+                {
+                    Name = "GHTK",
+                    Description =
+                       "",
+                    COD = 0,
+                    PictureUrl = "",
+                    Brand = "GHTK",
+                    Type = "",
+                    Weight = 0,
+                    Quantity = 0,
+                     isWeighed = true,
+                    Date = DateTime.UtcNow,
+                },
+                new Product
+                {
+                    Name = "SHOPEE",
+                    Description =
+                       "",
+                    COD = 0,
+                    PictureUrl = "",
+                    Brand = "SHOPEE",
+                    Type = "",
+                    Weight = 0,
+                    Quantity = 0,
+                     isWeighed = true,
+                    Date = DateTime.UtcNow,
+                },
+                new Product
+                {
+                    Name = "J&T",
+                    Description =
+                       "",
+                    COD = 0,
+                    PictureUrl = "",
+                    Brand = "J&T",
+                    Type = "",
+                    Weight = 0,
+                    Quantity = 0,
+                     isWeighed = true,
+                    Date = DateTime.UtcNow,
+                },
+                new Product
+                {
+                    Name = "VietNam Post",
+                    Description =
+                       "",
+                    COD = 0,
+                    PictureUrl = "",
+                    Brand = "VietNam Post",
+                    Type = "",
+                    Weight = 0,
+                    Quantity = 0,
+                     isWeighed = true,
+                    Date = DateTime.UtcNow,
+                },
+                new Product
+                {
+                    Name = "Viettel Post",
+                    Description =
+                       "",
+                    COD = 0,
+                    PictureUrl = "",
+                    Brand = "Viettel Post",
+                    Type = "",
+                    Weight = 0,
+                    Quantity = 0,
+                     isWeighed = true,
+                    Date = DateTime.UtcNow,
+                },
+                new Product
+                {
+                    Name = "GHN",
+                    Description =
+                       "",
+                    COD = 0,
+                    PictureUrl = "",
+                    Brand = "GHN",
+                    Type = "",
+                    Weight = 0,
+                    Quantity = 0,
+                     isWeighed = true,
+                    Date = DateTime.UtcNow,
+                },
+                new Product
+                {
+                    Name = "TikTok",
+                    Description =
+                       "",
+                    COD = 0,
+                    PictureUrl = "",
+                    Brand = "TikTok",
+                    Type = "",
+                    Weight = 0,
+                    Quantity = 0,
+                     isWeighed = true,
+                    Date = DateTime.UtcNow,
+                },
+                new Product
+                {
+                    Name = "TIKI",
+                    Description =
+                       "",
+                    COD = 0,
+                    PictureUrl = "",
+                    Brand = "TIKI",
+                    Type = "",
+                    Weight = 0,
+                    Quantity = 0,
+                     isWeighed = true,
+                    Date = DateTime.UtcNow,
+                },
+                new Product
+                {
+                    Name = "Khách Hàng",
+                    Description =
+                       "",
+                    COD = 0,
+                    PictureUrl = "",
+                    Brand = "Khách Hàng",
+                    Type = "",
+                    Weight = 0,
+                    Quantity = 0,
+                     isWeighed = true,
+                    Date = DateTime.UtcNow,
+                },
+                new Product
+                {
+                    Name = "Ninja Van",
+                    Description =
+                       "",
+                    COD = 0,
+                    PictureUrl = "",
+                    Brand = "Ninja Van",
+                    Type = "",
+                    Weight = 0,
+                    Quantity = 0,
+                     isWeighed = true,
+                    Date = DateTime.UtcNow,
+                },
+                new Product
+                {
+                    Name = "DHL",
+                    Description =
+                       "",
+                    COD = 0,
+                    PictureUrl = "",
+                    Brand = "DHL",
+                    Type = "",
+                    Weight = 0,
+                    Quantity = 0,
+                     isWeighed = true,
+                    Date = DateTime.UtcNow,
+                },
+                new Product
+                {
+                    Name = "IDCN",
+                    Description =
+                       "",
+                    COD = 0,
+                    PictureUrl = "",
+                    Brand = "IDCN",
+                    Type = "",
+                    Weight = 0,
+                    Quantity = 0,
+                     isWeighed = true,
+                    Date = DateTime.UtcNow,
+                },
+                new Product
+                {
+                    Name = "Grab",
+                    Description =
+                       "",
+                    COD = 0,
+                    PictureUrl = "",
+                    Brand = "Grab",
+                    Type = "",
+                    Weight = 0,
+                    Quantity = 0,
+                     isWeighed = true,
+                    Date = DateTime.UtcNow,
                 }
             };
 

@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.Data.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    [Migration("20240208054426_InitialPostgres")]
-    partial class InitialPostgres
+    [Migration("20240212082423_InitialDatabase")]
+    partial class InitialDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,6 +65,31 @@ namespace API.Data.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("BasketItem");
+                });
+
+            modelBuilder.Entity("API.Entities.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FullName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("API.Entities.OrderAggregate.Order", b =>
@@ -137,6 +162,9 @@ namespace API.Data.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("PictureUrl")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PublicId")
                         .HasColumnType("text");
 
                     b.Property<int>("Quantity")
