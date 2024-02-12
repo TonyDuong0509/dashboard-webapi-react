@@ -6,6 +6,8 @@ import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import { addBasketItemAsync } from "../../app/slice/basketSlice";
 import ProductSearch from "../productSearch/ProductSearch";
 import { useState } from "react";
+import agent from "../../app/api/agent";
+import { removeProduct } from "../../app/slice/productSlice";
 
 interface Props {
   columns: GridColDef[];
@@ -21,7 +23,19 @@ const DataTable = (props: Props) => {
   const [addedToBasket, setAddedToBasket] = useState<{
     [key: number]: boolean;
   }>({});
+
+  const [loading, setLoading] = useState(false);
+  const [target, setTarget] = useState(0);
   const dispatch = useAppDispatch();
+
+  function handleDeleteProduct(id: number) {
+    setLoading(true);
+    setTarget(id);
+    agent.Admin.deleteProduct(id)
+      .then(() => dispatch(removeProduct(id)))
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
+  }
 
   const CustomToolbar = () => {
     return (
@@ -77,9 +91,12 @@ const DataTable = (props: Props) => {
                   <img src="/basket.svg" alt="" />
                 </LoadingButton>
               )}
-              <div className="delete">
-                <img src="/delete.svg" alt="" />
-              </div>
+              <LoadingButton
+                loading={loading && target === params.row.id}
+                onClick={() => handleDeleteProduct(params.row.id)}
+              >
+                <img src="/delete.svg" />
+              </LoadingButton>
             </>
           )}
         </div>
@@ -119,7 +136,7 @@ const DataTable = (props: Props) => {
         columns={[...props.columns, isWeighedColumn, actionColumn]}
         slots={{ toolbar: CustomToolbar }}
         hideFooterPagination
-        checkboxSelection
+        checkboxSelection={false}
         disableRowSelectionOnClick
         disableColumnFilter
         disableDensitySelector

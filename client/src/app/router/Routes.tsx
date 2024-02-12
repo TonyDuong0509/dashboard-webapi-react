@@ -1,10 +1,7 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
-import { singleUser } from "../../data";
 import Home from "../../pages/home/Home";
 import ProductDetails from "../../pages/productDetails/ProductDetails";
 import Products from "../../pages/products/Products";
-import UserDetails from "../../pages/userDetails/UserDetails";
-import Users from "../../pages/users/Users";
 import App from "../layout/App";
 import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
@@ -14,6 +11,10 @@ import Register from "../../pages/account/Register";
 import Login from "../../pages/account/Login";
 import CheckoutPage from "../../pages/checkout/CheckoutPage";
 import Orders from "../../pages/orders/Orders";
+import Inventory from "../../pages/admin/Inventory";
+import Customers from "../../pages/customers/Customers";
+import CustomerList from "../../pages/admin/CustomerList";
+import CustomerDetails from "../../pages/customerDetails/CustomerDetails";
 
 export const router = createBrowserRouter([
   {
@@ -21,10 +22,19 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        // authenticated routes
         element: <RequireAuth />,
         children: [
           { path: "/checkout", element: <CheckoutPage /> },
           { path: "/orders", element: <Orders /> },
+        ],
+      },
+      // admin routes
+      {
+        element: <RequireAuth roles={["Admin"]} />,
+        children: [
+          { path: "/inventory", element: <Inventory /> },
+          { path: "/customerList", element: <CustomerList /> },
         ],
       },
       {
@@ -32,16 +42,16 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "users",
-        element: <Users />,
+        path: "customers",
+        element: <Customers />,
       },
       {
         path: "products",
         element: <Products />,
       },
       {
-        path: "users/:id",
-        element: <UserDetails {...singleUser} />,
+        path: "customers/:id",
+        element: <CustomerDetails />,
       },
       {
         path: "products/:id",

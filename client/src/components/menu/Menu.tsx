@@ -30,17 +30,29 @@ const menu = [
       {
         id: 1,
         title: "Khách hàng",
-        url: "/users",
+        url: "/customers",
         icon: "/user.svg",
       },
       {
         id: 2,
-        title: "Hàng kho",
+        title: "Thêm hoặc sửa khách hàng",
+        url: "/customerList",
+        icon: "/user.svg",
+      },
+      {
+        id: 3,
+        title: "Hàng ở kho",
         url: "/products",
         icon: "/product.svg",
       },
       {
-        id: 3,
+        id: 4,
+        title: "Thêm hoặc sửa hàng",
+        url: "/inventory",
+        icon: "/product.svg",
+      },
+      {
+        id: 5,
         title: "Chuyến đi",
         url: "/orders",
         icon: "/order.svg",
@@ -71,10 +83,10 @@ const Menu = () => {
           <span className="title">{item.title}</span>
           {item.listItems.map(
             (listItem) =>
-              (user
+              (user && user.roles?.includes("Admin")
                 ? true
                 : listItem.title === "Trang chủ" ||
-                  listItem.title === "Hàng kho") && (
+                  listItem.title === "Hàng ở kho") && (
                 <Link to={listItem.url} className="listItem" key={listItem.id}>
                   <img src={listItem.icon} alt="" />
                   <span className="listItemTitle">{listItem.title}</span>

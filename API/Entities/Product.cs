@@ -13,6 +13,7 @@ namespace API.Entities
         public string Brand { get; set; }
         public int Quantity { get; set; }
         public bool isWeighed { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime Date { get; set; } = DateTime.UtcNow;
+        public string PublicId { get; set; }
     }
 }

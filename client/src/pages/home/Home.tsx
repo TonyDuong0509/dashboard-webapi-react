@@ -1,77 +1,20 @@
-// import BarChartBox from "../../components/barChartBox/BarChartBox";
-// import BigChartBox from "../../components/bigChartBox/BigChartBox";
-// import ChartBox from "../../components/chartBox/ChartBox";
-// import PieChartBox from "../../components/pieChartBox/PieChartBox";
-// import TopBox from "../../components/topBox/TopBox";
-// import {
-//   barChartBoxRevenue,
-//   barChartBoxVisit,
-//   chartBoxConversion,
-//   chartBoxProduct,
-//   chartBoxRevenue,
-//   chartBoxUser,
-// } from "../../data";
-// import "./home.scss";
-
-// const Home = () => {
-//   return (
-//     <div className="home">
-//       <div className="box box1">
-//         <TopBox />
-//       </div>
-//       <div className="box box2">
-//         <ChartBox {...chartBoxUser} />
-//       </div>
-//       <div className="box box3">
-//         <ChartBox {...chartBoxProduct} />
-//       </div>
-//       <div className="box box4">
-//         <PieChartBox />
-//       </div>
-//       <div className="box box5">
-//         <ChartBox {...chartBoxConversion} />
-//       </div>
-//       <div className="box box6">
-//         <ChartBox {...chartBoxRevenue} />
-//       </div>
-//       <div className="box box7">
-//         <BigChartBox />
-//       </div>
-//       <div className="box box8">
-//         <BarChartBox {...barChartBoxVisit} />
-//       </div>
-//       <div className="box box9">
-//         <BarChartBox {...barChartBoxRevenue} />
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Home;
-
 import { Container, Typography, Button, Grid, Divider } from "@mui/material";
-import "./home.scss"; // Import file CSS để tùy chỉnh giao diện
 import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
     <div className="home">
-      <Grid item xs={12}>
-        <img
-          src="/vietphilimg.jpeg"
-          alt="Warehouse"
-          className="warehouse-image"
-        />
-      </Grid>
-      <Container maxWidth="md">
-        <Grid container spacing={4}>
-          <Grid item xs={12}>
-            <Typography
-              variant="h2"
-              component="div"
-              gutterBottom
-              color="violet"
-            >
+      <Grid container justifyContent="center">
+        <Grid item xs={12}>
+          <img
+            src="/vietphilimg.jpeg"
+            alt="Warehouse"
+            className="warehouse-image"
+          />
+        </Grid>
+        <Grid item xs={12} md={8} lg={6}>
+          <Container maxWidth="md">
+            <Typography variant="h2" gutterBottom color="violet">
               Welcome to VietPhil247
             </Typography>
             <Typography variant="body1" paragraph>
@@ -110,9 +53,9 @@ const Home = () => {
                 Xem hàng ở kho !
               </Button>
             </Link>
-          </Grid>
+          </Container>
         </Grid>
-      </Container>
+      </Grid>
     </div>
   );
 };

@@ -49,6 +49,9 @@ axios.interceptors.response.use(
       case 401:
         toast.error(data.title);
         break;
+      case 403:
+        toast.error("You are not allowed to do that");
+        break;
       case 500:
         router.navigate("/server-error", { state: { error: data } });
         break;
@@ -68,6 +71,39 @@ const request = {
   patch: (url: string, body: object) =>
     axios.patch(url, body).then(responseBody),
   delete: (url: string) => axios.delete(url).then(responseBody),
+  postForm: (url: string, data: FormData) =>
+    axios
+      .post(url, data, {
+        headers: { "Content-type": "multipart/form-data" },
+      })
+      .then(responseBody),
+  putForm: (url: string, data: FormData) =>
+    axios
+      .put(url, data, {
+        headers: { "Content-type": "multipart/form-data" },
+      })
+      .then(responseBody),
+};
+
+function createFormData(item: any) {
+  const formData = new FormData();
+  for (const key in item) {
+    formData.append(key, item[key]);
+  }
+  return formData;
+}
+
+const Admin = {
+  createProduct: (product: any) =>
+    request.postForm("products", createFormData(product)),
+  updateProduct: (product: any) =>
+    request.putForm("products", createFormData(product)),
+  deleteProduct: (id: number) => request.delete(`products/${id}`),
+  deleteCustomer: (id: number) => request.delete(`customers/${id}`),
+  createCustomer: (customer: any) =>
+    request.postForm("customers", createFormData(customer)),
+  updateCustomer: (customer: any) =>
+    request.putForm("customers", createFormData(customer)),
 };
 
 const Product = {
@@ -79,7 +115,11 @@ const Product = {
     request.patch(`products/${id}/updatedIsWeighed`, { isWeighed }),
   updateQuantity: (id: number, quantity: number) =>
     request.patch(`products/${id}/updateQuantity`, { quantity }),
-  remove: (id: number) => request.delete(`products/${id}`),
+};
+
+const Customer = {
+  list: (params: URLSearchParams) => request.get("customers", params),
+  details: (id: number) => request.get(`customers/${id}`),
 };
 
 const Basket = {
@@ -108,6 +148,8 @@ const agent = {
   Basket,
   Account,
   Orders,
+  Admin,
+  Customer,
 };
 
 export default agent;
