@@ -73,11 +73,11 @@ const Inventory = () => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
-              <TableCell align="left">Product</TableCell>
+              <TableCell align="left">Khách hàng</TableCell>
               <TableCell align="right">COD</TableCell>
-              <TableCell align="center">Type</TableCell>
+              <TableCell align="center">Loại</TableCell>
               <TableCell align="center">Brand</TableCell>
-              <TableCell align="center">Quantity</TableCell>
+              <TableCell align="center">Số lượng</TableCell>
               <TableCell align="right"></TableCell>
             </TableRow>
           </TableHead>
