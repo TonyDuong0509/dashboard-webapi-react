@@ -3,7 +3,7 @@
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'vietphil247-api'
+app = 'vietphil247'
 primary_region = 'sin'
 
 [build]
