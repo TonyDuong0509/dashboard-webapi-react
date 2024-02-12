@@ -68,7 +68,7 @@ export const fetchFilters = createAsyncThunk(
     try {
       return agent.Product.fetchFilters();
     } catch (error: any) {
-      return thunkAPI.rejectWithValue({ error: error.message });
+      return thunkAPI.rejectWithValue({ error: error.data });
     }
   }
 );
@@ -145,6 +145,14 @@ export const productSlice = createSlice({
     setIsWeighed: (state, action) => {
       state.isWeighedMap = action.payload;
     },
+    setProduct: (state, action) => {
+      productsAdapter.updateOne(state, action.payload);
+      state.productsLoaded = false;
+    },
+    removeProduct: (state, action) => {
+      productsAdapter.removeOne(state, action.payload);
+      state.productsLoaded = false;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchProductsAsync.pending, (state) => {
@@ -206,9 +214,6 @@ export const productSlice = createSlice({
         });
       }
     });
-    builder.addCase(updateProductQuantityAsync.rejected, (state) => {
-      state.status = "idle";
-    });
   },
 });
 
@@ -218,6 +223,8 @@ export const {
   setMetaData,
   setPageNumber,
   setIsWeighed,
+  setProduct,
+  removeProduct,
 } = productSlice.actions;
 
 export const productSelectors = productsAdapter.getSelectors(

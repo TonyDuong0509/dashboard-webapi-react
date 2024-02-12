@@ -4,5 +4,5 @@ export function getCookie(key: string) {
 }
 
 export function currencyFormat(amount: number) {
-  return "$" + (amount / 1000).toFixed(3);
+  return (amount / 1000).toFixed(3) + " VNĐ";
 }

@@ -1,21 +1,20 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import "./Products.scss";
-import Add from "../../components/add/Add";
 import LoadingComponent from "../../app/layout/LoadingComponent";
 import { useAppDispatch, useAppSelector } from "../../app/store/configureStore";
 import {
   fetchFilters,
   fetchProductsAsync,
-  productSelectors,
   setPageNumber,
   updateProductIsWeighedAsync,
   setIsWeighed,
 } from "../../app/slice/productSlice";
 import { Link } from "react-router-dom";
-import { Button, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import DataTable from "../../components/dataTable/DataTable";
 import { GridColDef } from "@mui/x-data-grid";
 import AppPagination from "../../components/appPagination/AppPagination";
+import useProducts from "../../app/hooks/useProducts";
 
 const columns: GridColDef[] = [
   {
@@ -78,11 +77,8 @@ const columns: GridColDef[] = [
 ];
 
 const Products = () => {
-  const [open, setOpen] = useState(false);
-  const products = useAppSelector(productSelectors.selectAll);
-  const { productsLoaded, filtersLoaded, metaData, isWeighedMap } =
-    useAppSelector((state) => state.product);
-  const { user } = useAppSelector((state) => state.account);
+  const { products, filtersLoaded, productsLoaded, metaData } = useProducts();
+  const { isWeighedMap } = useAppSelector((state) => state.product);
   const dispatch = useAppDispatch();
 
   const handleIsWeighedClick = useCallback(
@@ -122,15 +118,6 @@ const Products = () => {
     <div className="products">
       <div className="info">
         <h2>Danh sách hàng hoá</h2>
-        {user && (
-          <Button
-            variant="contained"
-            onClick={() => setOpen(true)}
-            size="small"
-          >
-            Thêm hàng
-          </Button>
-        )}
       </div>
       <DataTable
         slug="products"
@@ -151,7 +138,6 @@ const Products = () => {
           />
         )}
       </Grid>
-      {open && <Add slug="product" columns={columns} setOpen={setOpen} />}
     </div>
   );
 };

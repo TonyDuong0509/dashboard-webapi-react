@@ -15,21 +15,34 @@ import { Order } from "../../app/models/order";
 import OrderDetailed from "./OrderDetailed";
 import { LoadingButton } from "@mui/lab";
 import { Delete } from "@mui/icons-material";
+import { useAppDispatch } from "../../app/store/configureStore";
+import { removeOrder } from "../../app/slice/orderSlice";
 
 const Orders = () => {
   const [orders, setOrders] = useState<Order[] | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [target, setTarget] = useState(0);
   const [selectedOrderNumber, setSelectedOrderNumber] = useState(0);
+  const dispatch = useAppDispatch();
+
+  function handleDeleteOrder(id: number) {
+    setLoading(true);
+    setTarget(id);
+    agent.Orders.remove(id)
+      .then(() => dispatch(removeOrder(id)))
+      .catch((error) => console.log(error))
+      .finally(() => setLoading(false));
+  }
 
   useEffect(() => {
-    setLoading(true);
+    setLoading(false);
     agent.Orders.list()
       .then((orders) => setOrders(orders))
       .catch((error) => console.log(error))
-      .finally(() => setLoading(false));
+      .finally(() => setLoading(true));
   }, []);
 
-  if (loading) return <LoadingComponent message="Loading orders..." />;
+  if (!loading) return <LoadingComponent message="Loading orders..." />;
 
   if (selectedOrderNumber > 0 && orders)
     return (
@@ -74,9 +87,12 @@ const Orders = () => {
                 </Button>
               </TableCell>
               <TableCell align="center">
-                <LoadingButton color="error">
-                  <Delete />
-                </LoadingButton>
+                <LoadingButton
+                  loading={loading && target === order.id}
+                  startIcon={<Delete />}
+                  color="error"
+                  onClick={() => handleDeleteOrder(order.id)}
+                ></LoadingButton>
               </TableCell>
             </TableRow>
           ))}
