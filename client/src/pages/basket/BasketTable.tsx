@@ -59,6 +59,9 @@ const BasketTable = ({ items, isBasket = true }: Props) => {
               Khách hàng
             </TableCell>
             <TableCell sx={{ fontSize: 24, fontWeight: "bold" }} align="center">
+              Khối lượng
+            </TableCell>
+            <TableCell sx={{ fontSize: 24, fontWeight: "bold" }} align="center">
               COD
             </TableCell>
             <TableCell sx={{ fontSize: 24, fontWeight: "bold" }} align="center">
@@ -142,6 +145,7 @@ const BasketTable = ({ items, isBasket = true }: Props) => {
                   </Modal>
                 </Box>
               </TableCell>
+              <TableCell align="center">{item.weight}</TableCell>
               <TableCell align="center">{currencyFormat(item.cod)}</TableCell>
               <TableCell align="center">{item.quantity}</TableCell>
               {isBasket && (

@@ -8,6 +8,7 @@ export interface OrderItem {
   name: string;
   pictureUrl: string;
   cod: number;
+  weight: number;
   quantity: number;
 }
 

@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace API.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialDatabase : Migration
+    public partial class rebuildDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -258,6 +258,7 @@ namespace API.Data.Migrations
                     ItemOrderedProductId = table.Column<int>(name: "ItemOrdered_ProductId", type: "integer", nullable: true),
                     ItemOrderedName = table.Column<string>(name: "ItemOrdered_Name", type: "text", nullable: true),
                     ItemOrderedPictureUrl = table.Column<string>(name: "ItemOrdered_PictureUrl", type: "text", nullable: true),
+                    Weight = table.Column<double>(type: "double precision", nullable: false),
                     COD = table.Column<double>(type: "double precision", nullable: false),
                     Quantity = table.Column<int>(type: "integer", nullable: false),
                     OrderId = table.Column<int>(type: "integer", nullable: true)

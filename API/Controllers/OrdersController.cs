@@ -63,6 +63,7 @@ namespace API.Controllers
                 var orderItem = new OrderItem
                 {
                     ItemOrdered = itemOrdered,
+                    Weight = productItem.Weight,
                     COD = productItem.COD,
                     Quantity = productItem.Quantity,
                 };
