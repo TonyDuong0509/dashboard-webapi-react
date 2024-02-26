@@ -22,6 +22,7 @@ namespace API.Extensions
                         Name = item.ItemOrdered.Name,
                         PictureUrl = item.ItemOrdered.PictureUrl,
                         COD = item.COD,
+                        Weight = item.Weight,
                         Quantity = item.Quantity
                     }).ToList()
                 }).AsNoTracking();
