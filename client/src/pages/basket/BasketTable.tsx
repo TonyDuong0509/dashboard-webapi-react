@@ -59,7 +59,7 @@ const BasketTable = ({ items, isBasket = true }: Props) => {
               Khách hàng
             </TableCell>
             <TableCell sx={{ fontSize: 24, fontWeight: "bold" }} align="center">
-              Khối lượng
+              Khối lượng hàng
             </TableCell>
             <TableCell sx={{ fontSize: 24, fontWeight: "bold" }} align="center">
               COD
