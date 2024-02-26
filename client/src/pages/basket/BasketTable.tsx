@@ -147,7 +147,7 @@ const BasketTable = ({ items, isBasket = true }: Props) => {
               </TableCell>
               <TableCell align="center">{item.weight}</TableCell>
               <TableCell align="center">{currencyFormat(item.cod)}</TableCell>
-              <TableCell align="center">{item.quantity}</TableCell>
+              <TableCell align="center">{item.weight}</TableCell>
               {isBasket && (
                 <TableCell align="center">
                   <LoadingButton
